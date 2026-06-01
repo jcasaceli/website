@@ -26,8 +26,9 @@ Quick setup checklist:
    - Configure Tawk.to Admin > Webhooks to POST new messages to `https://<your-site>.netlify.app/.netlify/functions/send-sms`.
 
 6. Update SEO placeholders:
-   - Replace `https://yourdomain.com/` and image paths in the HTML head with your real domain and asset URLs.
+   - Replace `https://nyshipdetox.com/` and image paths in the HTML head with your real asset URLs.
    - Verify the site in Google Search Console and submit the `sitemap.xml`.
+   - The site now includes a weekly Google sitemap ping workflow to help search engines discover new content.
 
 Files added:
 - `.github/workflows/netlify-weekly-deploy.yml` — scheduled workflow to POST the Netlify build hook weekly.

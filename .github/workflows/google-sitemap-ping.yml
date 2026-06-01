@@ -1,0 +1,14 @@
+name: Ping Google Sitemap
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 8 * * MON'
+jobs:
+  ping-sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Google sitemap
+        run: |
+          echo "Pinging Google sitemap for nyshipdetox.com"
+          curl -fsS "https://www.google.com/ping?sitemap=https://nyshipdetox.com/sitemap.xml"
