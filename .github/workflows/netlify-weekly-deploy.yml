@@ -1,0 +1,15 @@
+name: Trigger Netlify Weekly Build
+on:
+  schedule:
+    - cron: '0 7 * * MON'
+  workflow_dispatch: {}
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify build hook
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK" ]; then echo "NETLIFY_BUILD_HOOK secret not set"; exit 1; fi
+          curl -fsS -X POST "$NETLIFY_BUILD_HOOK"
