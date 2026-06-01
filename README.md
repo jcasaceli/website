@@ -12,8 +12,13 @@ Quick setup checklist:
 
 4. Tawk.to chat widget (recommended):
    - Create a free account at https://dashboard.tawk.to/ and add a property.
-   - In the widget admin, copy the embed script and replace the `YOUR_PROPERTY_ID` placeholder in `addiction-rehab-center.html`.
+   - In the widget admin, copy the embed script or the property ID.
+   - Replace `YOUR_PROPERTY_ID` in `addiction-rehab-center.html` with the Tawk.to property ID.
    - Install the Tawk.to mobile app to receive messages on your phone.
+   - Configure pre-chat prompts and quick reply buttons in Tawk.to:
+     * "Are you seeking help for yourself or a loved one?"
+     * "What type of treatment do you need today?"
+     * "Would you like a confidential callback or text message?"
 
 5. (Optional) SMS forwarding via Twilio + Netlify Function:
    - Purchase a Twilio phone number and get `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN`.
