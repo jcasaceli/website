@@ -28,9 +28,10 @@ Quick setup checklist:
 6. Update SEO placeholders:
    - Replace `https://nyshipdetox.com/` and image paths in the HTML head with your real asset URLs.
    - Verify the site in Google Search Console and submit the `sitemap.xml`.
-   - The site now includes a weekly Google sitemap ping workflow to help search engines discover new content.
+   - The site now includes a weekly Bing sitemap ping workflow to help search engines discover new content automatically.
 
 Files added:
+- `.github/workflows/bing-sitemap-ping.yml` — scheduled workflow to ping Bing with your sitemap.
 - `.github/workflows/netlify-weekly-deploy.yml` — scheduled workflow to POST the Netlify build hook weekly.
 - `netlify/functions/send-sms.js` — example serverless function to forward webhook messages as SMS via Twilio.
 - `package.json` — declares `twilio` dependency for Netlify functions.
