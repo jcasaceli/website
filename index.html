@@ -21,7 +21,10 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
+  "@type": [
+    "MedicalBusiness",
+    "MedicalOrganization"
+  ],
   "@id": "https://nyshipdetox.com/#organization",
   "name": "Addiction Rehab Center",
   "url": "https://nyshipdetox.com/",
@@ -91,10 +94,80 @@
   },
   "lastReviewed": "2026-06-03",
   "reviewedBy": {
-    "@type": "Person",
-    "name": "Bradley Tourtlotte, MD",
-    "url": "https://nyshipdetox.com/medical-director"
+    "@id": "https://nyshipdetox.com/#dr-tourtlotte"
   }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does NYSHIP / Empire Plan cover drug and alcohol rehab?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. NYSHIP and the Empire Plan are required by federal law (the Mental Health Parity and Addiction Equity Act) to cover substance use disorder treatment — including detox, residential, PHP, and IOP — at the same level as any other medical condition. Most NY State and local government employees have meaningful, real coverage for addiction treatment. We verify your specific benefits at no cost before you make any decisions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does NYSHIP cover alcohol detox?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Medically supervised alcohol detox is one of the most commonly covered services under NYSHIP behavioral health benefits. Alcohol withdrawal can cause dangerous complications — including seizures — so treatment is considered medically necessary. This is a strong, well-established covered benefit. Call 213-321-6518 to verify your specific plan details."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does NYSHIP cover cocaine addiction treatment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Cocaine and stimulant addiction treatment is covered under NYSHIP behavioral health benefits. Both inpatient/residential and outpatient (PHP/IOP) levels of care may be covered depending on clinical need. Our team will verify your Empire Plan or NYSHIP HMO benefits before you start."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does NYSHIP cover kratom addiction treatment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Kratom dependence is classified as a substance use disorder and is treated under behavioral health benefits. NYSHIP covers treatment for kratom addiction including medically supervised detox support, outpatient counseling, and IOP. Many people don't realize their plan covers this — kratom dependency is more common than most people think, especially among state workers using it to manage chronic pain or work stress."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does NYSHIP cover Suboxone or Vivitrol (medication-assisted treatment)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Medication-Assisted Treatment (MAT) including buprenorphine/Suboxone and Vivitrol (naltrexone injection) is covered under NYSHIP and the Empire Plan. New York State has strong parity protections for MAT, and the Empire Plan specifically covers these medications when prescribed as part of a treatment plan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will my employer find out I went to rehab if I use my NYSHIP benefits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Your employer does not receive information about the specific services you use under your NYSHIP plan. Your treatment records are protected under HIPAA and 42 CFR Part 2 (which specifically covers substance use disorder records — stronger protection than standard medical records). You can take FMLA medical leave without disclosing the specific reason to your employer. Your union and HR are not notified of your treatment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I keep my job while going to treatment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many people do. FMLA (Family and Medical Leave Act) protects your position for up to 12 weeks for serious health conditions — addiction qualifies. The ADA also protects employees in recovery from discrimination. IOP programs (3-4 hours, 3-5 days per week, often with evening options) are specifically designed for working people. Many of our NYSHIP clients continue working during IOP. We'll help you figure out the best approach for your situation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I verify my NYSHIP benefits for rehab?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The easiest way is to let us do it. We'll call NYSHIP or your Empire Plan behavioral health administrator on your behalf, confirm your specific coverage, deductible, copay, and authorized level of care — and report back to you, usually within a few hours. There is no cost for this and no obligation. Call 213-321-6518 or fill out the form above."
+      }
+    }
+  ]
 }
 </script>
 <style>
@@ -512,6 +585,8 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
       <a href="/nyship-residential-treatment">Residential Treatment</a>
       <a href="/nyship-outpatient-treatment">Outpatient (PHP/IOP)</a>
       <a href="/nyship-coverage-verification">Coverage Verification</a>
+      <a href="/nyship-mental-health-coverage">Mental Health Coverage</a>
+      <a href="/empire-plan-vs-hmo">Empire Plan vs HMO</a>
   </div>
 </li>
       <li>
@@ -633,6 +708,8 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
 <a href="/nyship-residential-treatment">Residential Treatment</a>
 <a href="/nyship-outpatient-treatment">Outpatient (PHP/IOP)</a>
 <a href="/nyship-coverage-verification">Coverage Verification</a>
+<a href="/nyship-mental-health-coverage">Mental Health Coverage</a>
+<a href="/empire-plan-vs-hmo">Empire Plan vs HMO</a>
 <a href="tel:2133216518" class="mobile-cta">📞 213-321-6518</a>
 </div>
 <div id="spa-container">
@@ -1345,7 +1422,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
   </div>
 </footer>
 <script>
-var NAV_MAP = {"p-home":"/","p-albany":"/nyship-rehab-albany","p-buffalo":"/nyship-rehab-buffalo","p-syracuse":"/nyship-rehab-syracuse","p-rochester":"/nyship-rehab-rochester","p-poughkeepsie":"/nyship-rehab-poughkeepsie","p-binghamton":"/nyship-rehab-binghamton","p-schenectady":"/nyship-rehab-schenectady","p-troy":"/nyship-rehab-troy","p-utica":"/nyship-rehab-utica","p-newburgh":"/nyship-rehab-newburgh","p-saratoga":"/nyship-rehab-saratoga-springs","p-kingston":"/nyship-rehab-kingston","p-plattsburgh":"/nyship-rehab-plattsburgh","p-watertown":"/nyship-rehab-watertown","p-rome":"/nyship-rehab-rome","p-alcohol":"/alcohol-detox-treatment","p-cocaine":"/cocaine-addiction-treatment","p-kratom":"/kratom-addiction-treatment","p-painkillers":"/prescription-painkiller-addiction-treatment","p-opioids":"/opioid-addiction-treatment","p-benzos":"/benzodiazepine-detox-treatment","p-dual":"/dual-diagnosis-treatment","p-mat":"/medication-assisted-treatment","p-nyship":"/does-nyship-cover-rehab","p-empire":"/empire-plan-rehab-coverage","p-cdphp":"/does-cdphp-cover-rehab","p-mvp":"/does-mvp-cover-rehab","p-emblem":"/does-emblemhealth-cover-rehab","p-excellus":"/does-excellus-cover-rehab","p-state":"/nys-agency-employee-rehab","p-schools":"/teacher-school-employee-rehab","p-suny":"/suny-cuny-employee-rehab","p-county":"/county-city-employee-rehab","p-fire":"/firefighter-ems-rehab","p-doccs":"/corrections-officer-rehab","p-retirees":"/nyship-retiree-rehab","p-editorial":"/editorial-policy","p-references":"/references","p-medical-director":"/medical-director","p-clinical-team":"/clinical-team","c-empire-plan-substance-abuse-benefits":"/empire-plan-substance-abuse-benefits","c-nyship-prior-authorization-guide":"/nyship-prior-authorization-guide","c-how-much-does-rehab-cost-with-nyship":"/how-much-does-rehab-cost-with-nyship","c-nyship-copay-deductible-rehab":"/nyship-copay-deductible-rehab","c-does-nyship-cover-out-of-network-rehab":"/does-nyship-cover-out-of-network-rehab","c-fmla-rehab-ny-state-employees":"/fmla-rehab-ny-state-employees","c-will-rehab-affect-my-state-job":"/will-rehab-affect-my-state-job","c-medical-leave-for-rehab-nyship":"/medical-leave-for-rehab-nyship","c-is-rehab-confidential-state-employee":"/is-rehab-confidential-state-employee","c-addiction-help-without-losing-job-ny":"/addiction-help-without-losing-job-ny","c-what-to-expect-in-detox":"/what-to-expect-in-detox","c-how-to-choose-a-rehab-nyship":"/how-to-choose-a-rehab-nyship","c-signs-you-need-addiction-treatment":"/signs-you-need-addiction-treatment","c-family-guide-loved-one-addiction-ny":"/family-guide-loved-one-addiction-ny","c-levels-of-addiction-care":"/levels-of-addiction-care","c-nyship-rehab-new-york-city":"/nyship-rehab-new-york-city","c-nyship-rehab-long-island":"/nyship-rehab-long-island","c-nyship-rehab-yonkers":"/nyship-rehab-yonkers","c-nyship-rehab-white-plains":"/nyship-rehab-white-plains","c-nyship-rehab-coverage":"/nyship-rehab-coverage","c-nyship-detox-coverage":"/nyship-detox-coverage","c-nyship-residential-treatment":"/nyship-residential-treatment","c-nyship-outpatient-treatment":"/nyship-outpatient-treatment","c-nyship-coverage-verification":"/nyship-coverage-verification","p-guides":"/nyship-rehab-guides"};
+var NAV_MAP = {"p-home":"/","p-albany":"/nyship-rehab-albany","p-buffalo":"/nyship-rehab-buffalo","p-syracuse":"/nyship-rehab-syracuse","p-rochester":"/nyship-rehab-rochester","p-poughkeepsie":"/nyship-rehab-poughkeepsie","p-binghamton":"/nyship-rehab-binghamton","p-schenectady":"/nyship-rehab-schenectady","p-troy":"/nyship-rehab-troy","p-utica":"/nyship-rehab-utica","p-newburgh":"/nyship-rehab-newburgh","p-saratoga":"/nyship-rehab-saratoga-springs","p-kingston":"/nyship-rehab-kingston","p-plattsburgh":"/nyship-rehab-plattsburgh","p-watertown":"/nyship-rehab-watertown","p-rome":"/nyship-rehab-rome","p-alcohol":"/alcohol-detox-treatment","p-cocaine":"/cocaine-addiction-treatment","p-kratom":"/kratom-addiction-treatment","p-painkillers":"/prescription-painkiller-addiction-treatment","p-opioids":"/opioid-addiction-treatment","p-benzos":"/benzodiazepine-detox-treatment","p-dual":"/dual-diagnosis-treatment","p-mat":"/medication-assisted-treatment","p-nyship":"/does-nyship-cover-rehab","p-empire":"/empire-plan-rehab-coverage","p-cdphp":"/does-cdphp-cover-rehab","p-mvp":"/does-mvp-cover-rehab","p-emblem":"/does-emblemhealth-cover-rehab","p-excellus":"/does-excellus-cover-rehab","p-state":"/nys-agency-employee-rehab","p-schools":"/teacher-school-employee-rehab","p-suny":"/suny-cuny-employee-rehab","p-county":"/county-city-employee-rehab","p-fire":"/firefighter-ems-rehab","p-doccs":"/corrections-officer-rehab","p-retirees":"/nyship-retiree-rehab","p-editorial":"/editorial-policy","p-references":"/references","p-medical-director":"/medical-director","p-clinical-team":"/clinical-team","c-empire-plan-substance-abuse-benefits":"/empire-plan-substance-abuse-benefits","c-nyship-prior-authorization-guide":"/nyship-prior-authorization-guide","c-how-much-does-rehab-cost-with-nyship":"/how-much-does-rehab-cost-with-nyship","c-nyship-copay-deductible-rehab":"/nyship-copay-deductible-rehab","c-does-nyship-cover-out-of-network-rehab":"/does-nyship-cover-out-of-network-rehab","c-fmla-rehab-ny-state-employees":"/fmla-rehab-ny-state-employees","c-will-rehab-affect-my-state-job":"/will-rehab-affect-my-state-job","c-medical-leave-for-rehab-nyship":"/medical-leave-for-rehab-nyship","c-is-rehab-confidential-state-employee":"/is-rehab-confidential-state-employee","c-addiction-help-without-losing-job-ny":"/addiction-help-without-losing-job-ny","c-what-to-expect-in-detox":"/what-to-expect-in-detox","c-how-to-choose-a-rehab-nyship":"/how-to-choose-a-rehab-nyship","c-signs-you-need-addiction-treatment":"/signs-you-need-addiction-treatment","c-family-guide-loved-one-addiction-ny":"/family-guide-loved-one-addiction-ny","c-levels-of-addiction-care":"/levels-of-addiction-care","c-nyship-rehab-new-york-city":"/nyship-rehab-new-york-city","c-nyship-rehab-long-island":"/nyship-rehab-long-island","c-nyship-rehab-yonkers":"/nyship-rehab-yonkers","c-nyship-rehab-white-plains":"/nyship-rehab-white-plains","c-nyship-rehab-coverage":"/nyship-rehab-coverage","c-nyship-detox-coverage":"/nyship-detox-coverage","c-nyship-residential-treatment":"/nyship-residential-treatment","c-nyship-outpatient-treatment":"/nyship-outpatient-treatment","c-nyship-coverage-verification":"/nyship-coverage-verification","c-nyship-mental-health-coverage":"/nyship-mental-health-coverage","c-empire-plan-vs-hmo":"/empire-plan-vs-hmo","p-guides":"/nyship-rehab-guides"};
 var currentPage = "p-home";
 function goTo(pid){ window.location.href = NAV_MAP[pid] || '/'; }
 function scrollSec(cls){

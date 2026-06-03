@@ -141,7 +141,7 @@ const styleBlock = $('style').first().toString();
 /* ---- Enhanced Organization / MedicalBusiness schema ------------- */
 const ORG_LD = '<script type="application/ld+json">\n' + JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': 'MedicalBusiness',
+  '@type': ['MedicalBusiness', 'MedicalOrganization'],
   '@id': ORIGIN + '/#organization',
   name: 'Addiction Rehab Center',
   url: ORIGIN + '/',
@@ -153,6 +153,34 @@ const ORG_LD = '<script type="application/ld+json">\n' + JSON.stringify({
     .map(s => ({ '@type': 'MedicalProcedure', name: s })),
   contactPoint: [{ '@type': 'ContactPoint', telephone: '+1' + TEL, contactType: 'admissions', areaServed: 'US', availableLanguage: 'English' }]
 }, null, 2) + '\n</script>';
+
+/* ---- Reviewer / physician entity (referenced by @id everywhere) - */
+const REVIEWER_ID = ORIGIN + '/#dr-tourtlotte';
+const REVIEWER_LD = '<script type="application/ld+json">\n' + JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': REVIEWER_ID,
+  name: 'Bradley Tourtlotte, MD',
+  honorificSuffix: 'MD',
+  jobTitle: 'Medical Director',
+  url: ORIGIN + '/medical-director',
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Eastern Virginia Medical School' },
+  identifier: { '@type': 'PropertyValue', propertyID: 'NPI', value: '1902955859' },
+  worksFor: { '@id': ORIGIN + '/#organization' }
+}, null, 2) + '\n</script>';
+
+/* Extract FAQ pairs from a cheerio page node (.faq-item > .faq-q/.faq-a) */
+function extractFaq(node) {
+  const out = [];
+  node.find('.faq-item').each((_, el) => {
+    const q = $(el).find('.faq-q').first().clone();
+    q.find('.faq-arrow').remove();
+    const question = q.text().trim();
+    const answer = $(el).find('.faq-a').first().text().trim();
+    if (question && answer) out.push({ q: question, a: answer });
+  });
+  return out;
+}
 
 /* ---- Rewrite every goTo() link to a real href ------------------- */
 $('a[onclick]').each((_, el) => {
@@ -271,7 +299,7 @@ function pageLd(meta, url) {
     about: { '@type': 'MedicalCondition', name: 'Substance Use Disorder' },
     publisher: { '@id': ORIGIN + '/#organization' },
     lastReviewed: '2026-06-03',
-    reviewedBy: { '@type': 'Person', name: 'Bradley Tourtlotte, MD', url: ORIGIN + '/medical-director' }
+    reviewedBy: { '@id': REVIEWER_ID }
   }, null, 2) + '\n</script>';
 }
 function faqLd(faq) {
@@ -358,12 +386,16 @@ function write(file, html){ fs.writeFileSync(path.join(OUT, file), html); count+
 PAGES.forEach(meta => {
   const node = $('#' + meta.id);
   if (!node.length) { console.warn('!! missing page', meta.id); return; }
-  const html = renderPage(meta, node.html(), meta.id);
+  const faq = extractFaq(node);
+  const html = renderPage(meta, node.html(), meta.id, [faqLd(faq)]);
   write(meta.slug === '' ? 'index.html' : meta.slug + '.html', html);
 });
 
-/* ---- E-E-A-T pages ---------------------------------------------- */
-EEAT.forEach(meta => write(meta.slug + '.html', renderPage(meta, meta.html, meta.id)));
+/* ---- E-E-A-T pages (physician schema on the medical-director page) */
+EEAT.forEach(meta => {
+  const extra = meta.id === 'p-medical-director' ? [REVIEWER_LD] : [];
+  write(meta.slug + '.html', renderPage(meta, meta.html, meta.id, extra));
+});
 
 /* ---- Content pages (coverage / city / article) ------------------ */
 CONTENT.forEach(meta => {
