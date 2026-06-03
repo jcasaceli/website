@@ -4,3 +4,17 @@
 
 [functions]
   directory = "netlify/functions"
+
+# Consolidate the old single-file SPA URL into the homepage (one canonical URL)
+[[redirects]]
+  from = "/addiction-rehab-center.html"
+  to = "/"
+  status = 301
+  force = true
+
+# Serve clean, extensionless URLs and 301 the .html version to it
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true

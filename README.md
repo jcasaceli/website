@@ -1,6 +1,24 @@
 # Website — Netlify + Chat Integration
 
-This folder contains a single-page HTML site and helper files to deploy on Netlify with weekly automatic builds and an optional SMS-forwarding function.
+This folder contains the nyshipdetox.com site and helper files to deploy on Netlify, plus an optional SMS-forwarding function.
+
+## Site architecture (important)
+
+`addiction-rehab-center.html` is the **content source** — one big file holding every page section. `build.js` splits it into individual, SEO-indexable static pages (one URL each), generates the homepage (`index.html`), the E-E-A-T pages, and `sitemap.xml`.
+
+**To update the site:** edit the relevant section in `addiction-rehab-center.html` (or `eeat-content.js` for trust pages), then run:
+
+```
+npm install      # first time only — installs cheerio
+node build.js    # regenerates all pages + sitemap
+```
+
+Commit the regenerated `*.html` files. Netlify serves them as static files (no build step required on Netlify). Page titles/descriptions/slugs live in the `PAGES` array in `build.js`.
+
+To publish the Medical Director / Clinical Team pages: fill the real staff details in `eeat-templates.js`, move those objects into `eeat-content.js`, and re-run `node build.js`.
+
+---
+
 
 Quick setup checklist:
 
