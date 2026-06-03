@@ -2,9 +2,13 @@
    build.js — Static site generator for nyshipdetox.com
    -------------------------------------------------------------------
    Splits the single-file SPA (addiction-rehab-center.html) into one
-   real, indexable HTML page per section, each with its own URL,
-   <title>, meta description, canonical tag and JSON-LD. Also emits the
-   E-E-A-T pages, the homepage (index.html) and sitemap.xml.
+   real, indexable HTML page per section, and also generates:
+     • authored E-E-A-T pages           (eeat-content.js)
+     • coverage / city / guide pages    (content/*.json)
+     • a guides hub                     (/nyship-rehab-guides)
+     • sitemap.xml
+   Each page gets its own URL, <title>, meta description, canonical,
+   Organization + WebPage (+ FAQPage where applicable) JSON-LD.
 
    Run:  node build.js
    =================================================================== */
@@ -15,16 +19,15 @@ const cheerio = require('cheerio');
 
 const ORIGIN = 'https://nyshipdetox.com';
 const PHONE = '213-321-6518';
+const TEL = '2133216518';
 const SOURCE = path.join(__dirname, 'addiction-rehab-center.html');
 const OUT = __dirname;
 
-/* ---- Per-page SEO metadata -------------------------------------- */
-/* id, slug ('' = homepage/index.html), title, description            */
+/* ---- Per-page SEO metadata for the SPA split -------------------- */
 const PAGES = [
   { id: 'p-home', slug: '', title: 'NYSHIP & Empire Plan Drug Rehab | Alcohol & Drug Detox NY | Addiction Rehab Center',
     desc: 'NY State employees: your NYSHIP / Empire Plan covers alcohol detox, cocaine, kratom, opioid and painkiller addiction treatment across New York. Free, confidential benefits check — call ' + PHONE + '.' },
 
-  // ---- Locations ----
   { id: 'p-albany', slug: 'nyship-rehab-albany', title: 'NYSHIP Rehab in Albany, NY | Empire Plan Detox & Addiction Treatment',
     desc: 'NYSHIP & Empire Plan addiction treatment for Albany & Capital Region state employees — alcohol detox, opioid, cocaine & dual-diagnosis care. Confidential. Call ' + PHONE + '.' },
   { id: 'p-buffalo', slug: 'nyship-rehab-buffalo', title: 'NYSHIP Rehab in Buffalo, NY | Erie County Empire Plan Addiction Treatment',
@@ -56,7 +59,6 @@ const PAGES = [
   { id: 'p-rome', slug: 'nyship-rehab-rome', title: 'NYSHIP Rehab in Rome, NY | Oneida County Empire Plan Treatment',
     desc: 'NYSHIP & Empire Plan addiction treatment for Rome and Mohawk Valley public employees. Confidential alcohol, opioid and cocaine care. Verify free — ' + PHONE + '.' },
 
-  // ---- What we treat ----
   { id: 'p-alcohol', slug: 'alcohol-detox-treatment', title: 'Alcohol Detox & Rehab for NY State Employees | NYSHIP Covered',
     desc: 'Medically supervised alcohol detox and rehab covered by NYSHIP & the Empire Plan for NY State and government employees. Confidential, job-protected. Call ' + PHONE + '.' },
   { id: 'p-cocaine', slug: 'cocaine-addiction-treatment', title: 'Cocaine Addiction Treatment for NY State Employees | NYSHIP Covered',
@@ -74,7 +76,6 @@ const PAGES = [
   { id: 'p-mat', slug: 'medication-assisted-treatment', title: 'Medication-Assisted Treatment (MAT) | NYSHIP / Empire Plan Coverage',
     desc: 'Suboxone, Vivitrol & methadone-based MAT covered by NYSHIP & the Empire Plan for NY State employees. Confidential, evidence-based care. Call ' + PHONE + '.' },
 
-  // ---- Insurance ----
   { id: 'p-nyship', slug: 'does-nyship-cover-rehab', title: 'Does NYSHIP Cover Rehab? Complete Coverage Guide for NY State Employees',
     desc: 'Yes — NYSHIP covers detox, inpatient rehab, PHP, IOP and MAT for NY State and government employees. Learn what is covered, costs and how to verify. Call ' + PHONE + '.' },
   { id: 'p-empire', slug: 'empire-plan-rehab-coverage', title: 'Empire Plan Rehab Coverage | NY State Employee Addiction Treatment',
@@ -88,7 +89,6 @@ const PAGES = [
   { id: 'p-excellus', slug: 'does-excellus-cover-rehab', title: 'Does Excellus BlueCross BlueShield Cover Rehab? NYSHIP Coverage',
     desc: 'Excellus BCBS NYSHIP HMO addiction treatment coverage for Western & Central NY State employees — detox and rehab explained. Free verification. Call ' + PHONE + '.' },
 
-  // ---- Who we serve ----
   { id: 'p-state', slug: 'nys-agency-employee-rehab', title: 'Addiction Treatment for NY State Agency Employees | Empire Plan Covered',
     desc: 'Confidential, Empire Plan–covered addiction treatment for NY State agency employees. Job-protected under FMLA. Free, private benefits verification. Call ' + PHONE + '.' },
   { id: 'p-schools', slug: 'teacher-school-employee-rehab', title: 'Addiction Treatment for NY Teachers & School Staff | NYSHIP Covered',
@@ -105,54 +105,97 @@ const PAGES = [
     desc: 'NYSHIP addiction treatment coverage continues into retirement. Confidential detox and rehab for NY State and government retirees. Free verification. Call ' + PHONE + '.' },
 ];
 
-/* ---- E-E-A-T pages (authored content) --------------------------- */
+/* ---- E-E-A-T pages (authored) ----------------------------------- */
 const EEAT = require('./eeat-content.js');
 
-/* ---- Build slug map (id -> path) -------------------------------- */
+/* ---- Content pages (coverage / city / guides) from content/*.json */
+const CONTENT = [];
+const contentDir = path.join(__dirname, 'content');
+if (fs.existsSync(contentDir)) {
+  fs.readdirSync(contentDir).filter(f => f.endsWith('.json')).sort().forEach(f => {
+    try {
+      const arr = JSON.parse(fs.readFileSync(path.join(contentDir, f), 'utf8'));
+      arr.forEach(p => { p.id = p.id || ('c-' + p.slug); CONTENT.push(p); });
+    } catch (e) { console.warn('!! could not parse', f, '-', e.message); }
+  });
+}
+const COVERAGE = CONTENT.filter(p => p.category === 'coverage');
+const CITIES   = CONTENT.filter(p => p.category === 'location');
+const ARTICLES = CONTENT.filter(p => p.category === 'article');
+const GUIDES_HUB = { id: 'p-guides', slug: 'nyship-rehab-guides', navLabel: 'Guides',
+  title: 'NYSHIP Rehab Guides & Resources | Addiction Treatment for NY Employees',
+  desc: 'In-depth guides on NYSHIP and Empire Plan addiction-treatment coverage, costs, job protection, and how to choose care for NY State and government employees.' };
+
+/* ---- Slug map (id -> path) -------------------------------------- */
 const slugMap = {};
 PAGES.forEach(p => { slugMap[p.id] = p.slug === '' ? '/' : '/' + p.slug; });
 EEAT.forEach(p => { slugMap[p.id] = '/' + p.slug; });
+CONTENT.forEach(p => { slugMap[p.id] = '/' + p.slug; });
+if (ARTICLES.length) slugMap[GUIDES_HUB.id] = '/' + GUIDES_HUB.slug;
 
 /* =================================================================== */
 const raw = fs.readFileSync(SOURCE, 'utf8');
 const $ = cheerio.load(raw, { decodeEntities: false });
+const styleBlock = $('style').first().toString();
 
-/* Pull reusable head pieces */
-const styleBlock = $('style').first().toString();          // <style>…</style>
-const orgLd = $('script[type="application/ld+json"]').first().toString();
+/* ---- Enhanced Organization / MedicalBusiness schema ------------- */
+const ORG_LD = '<script type="application/ld+json">\n' + JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'MedicalBusiness',
+  '@id': ORIGIN + '/#organization',
+  name: 'Addiction Rehab Center',
+  url: ORIGIN + '/',
+  telephone: '+1' + TEL,
+  medicalSpecialty: 'Addiction Medicine',
+  description: 'NYSHIP and Empire Plan addiction treatment — detox, rehab and outpatient care for New York State and government employees.',
+  areaServed: { '@type': 'State', name: 'New York' },
+  availableService: ['Medical Detox', 'Residential Treatment', 'Partial Hospitalization', 'Intensive Outpatient', 'Medication-Assisted Treatment', 'Dual Diagnosis Treatment']
+    .map(s => ({ '@type': 'MedicalProcedure', name: s })),
+  contactPoint: [{ '@type': 'ContactPoint', telephone: '+1' + TEL, contactType: 'admissions', areaServed: 'US', availableLanguage: 'English' }]
+}, null, 2) + '\n</script>';
 
-/* ---- Rewrite every goTo() link across the whole document -------- */
+/* ---- Rewrite every goTo() link to a real href ------------------- */
 $('a[onclick]').each((_, el) => {
-  const a = $(el);
-  const onclick = a.attr('onclick') || '';
+  const a = $(el), onclick = a.attr('onclick') || '';
   const m = onclick.match(/goTo\(['"]([^'"]+)['"]\)/);
-  if (m) {
-    const target = slugMap[m[1]] || '/';
-    a.attr('href', target);
-    a.removeAttr('onclick');
-  }
-  // scrollSec(...) links are left intact (in-page smooth scroll)
+  if (m) { a.attr('href', slugMap[m[1]] || '/'); a.removeAttr('onclick'); }
 });
 
-/* ---- Add an "About / Our Team" dropdown for the E-E-A-T pages ---- */
-const aboutLi =
-  '<li>\n  <span>About <span class="arrow">&#9660;</span></span>\n  <div class="dropdown">\n' +
-  EEAT.map(p => `    <a href="/${p.slug}">${p.navLabel}</a>\n`).join('') +
-  '  </div>\n</li>\n';
-$('.nav-menu li').first().before(aboutLi); // place "About" first
-// mobile menu: append an About section
-const aboutMob =
-  '<div class="mob-section-title">About</div>\n' +
-  EEAT.map(p => `<a href="/${p.slug}">${p.navLabel}</a>`).join('\n') + '\n';
-$('#mobileMenu .mobile-cta').before(aboutMob);
+/* ---- Inject new nav menus (Coverage, Guides, Downstate cities) --- */
+const navMenu = $('.nav-menu').first();
+if (COVERAGE.length) {
+  const links = COVERAGE.map(p => `      <a href="/${p.slug}">${p.navLabel || p.title}</a>`).join('\n');
+  navMenu.children('li').first().after(
+    `<li>\n  <span>Coverage <span class="arrow">&#9660;</span></span>\n  <div class="dropdown">\n${links}\n  </div>\n</li>`);
+}
+if (CITIES.length) {
+  const col = `<div class="dropdown-col">\n  <div class="dropdown-col-title">Downstate &amp; NYC</div>\n` +
+    CITIES.map(p => `  <a href="/${p.slug}">${p.navLabel || p.title}</a>`).join('\n') + `\n</div>`;
+  const locWide = navMenu.find('li').filter((_, li) => $(li).find('span').first().text().trim().startsWith('Locations')).find('.dropdown.wide');
+  if (locWide.length) locWide.append(col);
+}
+if (ARTICLES.length) {
+  navMenu.find('li').last().before(`<li><a href="/${GUIDES_HUB.slug}">Guides</a></li>`);
+}
 
-/* ---- Extract shared chrome (now with rewritten links) ----------- */
+/* ---- Mobile menu: append new sections --------------------------- */
+const mob = $('#mobileMenu');
+function mobSection(title, items) {
+  return `<div class="mob-section-title">${title}</div>\n` +
+    items.map(p => `<a href="/${p.slug}">${p.navLabel || p.title}</a>`).join('\n') + '\n';
+}
+const mobCta = mob.find('.mobile-cta');
+if (ARTICLES.length) mobCta.before(`<div class="mob-section-title">Guides</div>\n<a href="/${GUIDES_HUB.slug}">All NYSHIP Rehab Guides</a>\n`);
+if (CITIES.length) mobCta.before(mobSection('Downstate &amp; NYC', CITIES));
+if (COVERAGE.length) mobCta.before(mobSection('Coverage', COVERAGE));
+
+/* ---- Extract shared chrome (links now rewritten) ---------------- */
 const crisisBar = $('.crisis-bar').first().toString();
 const navHTML = $('nav').first().toString();
 const mobileMenu = $('#mobileMenu').toString();
 const footerHTML = $('footer').first().toString();
 
-/* ---- Static per-page script (replaces SPA router) --------------- */
+/* ---- Static per-page script ------------------------------------- */
 function staticScript(currentId) {
   return `<script>
 var NAV_MAP = ${JSON.stringify(slugMap)};
@@ -160,8 +203,7 @@ var currentPage = ${JSON.stringify(currentId)};
 function goTo(pid){ window.location.href = NAV_MAP[pid] || '/'; }
 function scrollSec(cls){
   var page = document.getElementById(currentPage) || document.body;
-  var el = page.querySelector('#'+cls) || page.querySelector('.'+cls)
-        || document.querySelector('.'+cls);
+  var el = page.querySelector('#'+cls) || page.querySelector('.'+cls) || document.querySelector('.'+cls);
   if(el){ var top = el.getBoundingClientRect().top + window.pageYOffset - 80;
     window.scrollTo({top:top, behavior:'smooth'}); }
 }
@@ -215,48 +257,81 @@ s0.parentNode.insertBefore(s1,s0);
 <!-- End of Tawk.to Script -->`;
 }
 
-/* ---- Per-page JSON-LD (WebPage + Breadcrumb) -------------------- */
+/* ---- Schema helpers --------------------------------------------- */
+function esc(s){ return String(s)
+  .replace(/&(?!(amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)/g,'&amp;')
+  .replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function stripTags(s){ return String(s).replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim(); }
+
 function pageLd(meta, url) {
-  const ld = {
-    '@context': 'https://schema.org',
-    '@type': 'MedicalWebPage',
-    name: meta.title,
-    description: meta.desc,
-    url: url,
-    inLanguage: 'en-US',
+  return '<script type="application/ld+json">\n' + JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'MedicalWebPage',
+    name: meta.title, description: meta.desc, url, inLanguage: 'en-US',
     isPartOf: { '@type': 'WebSite', name: 'Addiction Rehab Center', url: ORIGIN + '/' },
-    publisher: { '@type': 'Organization', name: 'Addiction Rehab Center', url: ORIGIN + '/' },
-    audience: { '@type': 'Audience', audienceType: 'NY State & government employees with NYSHIP / Empire Plan coverage' }
-  };
-  return '<script type="application/ld+json">\n' + JSON.stringify(ld, null, 2) + '\n</script>';
+    about: { '@type': 'MedicalCondition', name: 'Substance Use Disorder' },
+    publisher: { '@id': ORIGIN + '/#organization' },
+    lastReviewed: '2026-06-03',
+    reviewedBy: { '@type': 'Person', name: 'Bradley Tourtlotte, MD', url: ORIGIN + '/medical-director' }
+  }, null, 2) + '\n</script>';
+}
+function faqLd(faq) {
+  if (!faq || !faq.length) return '';
+  return '<script type="application/ld+json">\n' + JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({ '@type': 'Question', name: stripTags(f.q),
+      acceptedAnswer: { '@type': 'Answer', text: stripTags(f.a) } }))
+  }, null, 2) + '\n</script>';
+}
+
+/* ---- Reusable HTML blocks --------------------------------------- */
+const reviewByline =
+  `<p class="review-byline" style="color:var(--muted);font-size:.9rem;border-left:3px solid var(--blue);padding-left:.8rem;margin:.2rem 0 1.5rem">` +
+  `Medically reviewed by <a href="/medical-director" style="color:var(--blue);font-weight:600">Bradley Tourtlotte, MD</a> · ` +
+  `Written by the <a href="/clinical-team" style="color:var(--blue);font-weight:600">Addiction Rehab Center clinical team</a> · Last reviewed June 2026</p>`;
+
+const contentCta = `
+<section class="verify-section" id="verify-section" style="background:var(--sky)">
+  <div class="container" style="text-align:center">
+    <div class="section-label">Free &amp; Confidential</div>
+    <h2>Verify Your NYSHIP Benefits — No Cost, No Obligation</h2>
+    <p class="section-sub" style="margin:0 auto 2rem">We confirm your exact NYSHIP / Empire Plan coverage and report back, usually within a few hours. HIPAA &amp; 42 CFR Part 2 protected.</p>
+    <a href="tel:${TEL}" class="btn-primary">Call ${PHONE}</a>
+  </div>
+</section>`;
+
+function faqSection(faq) {
+  if (!faq || !faq.length) return '';
+  const items = faq.map(f =>
+    `      <div class="faq-item">\n        <div class="faq-q" aria-expanded="false">${f.q} <span class="faq-arrow">▾</span></div>\n        <div class="faq-a">${f.a}</div>\n      </div>`
+  ).join('\n');
+  return `\n<section class="faq-bg" id="faq-section">\n  <div class="container">\n    <div class="section-label">Frequently Asked Questions</div>\n    <h2>Frequently Asked Questions</h2>\n    <div class="faq-list">\n${items}\n    </div>\n  </div>\n</section>`;
 }
 
 /* ---- Full-page renderer ----------------------------------------- */
-function renderPage(meta, innerHTML, currentId) {
+function renderPage(meta, innerHTML, currentId, extraSchema) {
   const url = meta.slug === '' ? ORIGIN + '/' : ORIGIN + '/' + meta.slug;
-  const ogImg = ORIGIN + '/logo.png';
+  const schemas = [ORG_LD, pageLd(meta, url)].concat(extraSchema || []).filter(Boolean).join('\n');
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="google-site-verification" content="qZbu_Qsif1jDyAgSy0oFs1TDKkePCp5eoQiOBupLWXs" />
-<title>${meta.title}</title>
-<meta name="description" content="${meta.desc}"/>
+<title>${esc(meta.title)}</title>
+<meta name="description" content="${esc(meta.desc)}"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="${url}"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="${url}"/>
-<meta property="og:title" content="${meta.title}"/>
-<meta property="og:description" content="${meta.desc}"/>
+<meta property="og:title" content="${esc(meta.title)}"/>
+<meta property="og:description" content="${esc(meta.desc)}"/>
 <meta property="og:site_name" content="Addiction Rehab Center"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:image" content="${ogImg}"/>
+<meta property="og:image" content="${ORIGIN}/logo.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="${meta.title}"/>
-<meta name="twitter:description" content="${meta.desc}"/>
-${orgLd}
-${pageLd(meta, url)}
+<meta name="twitter:title" content="${esc(meta.title)}"/>
+<meta name="twitter:description" content="${esc(meta.desc)}"/>
+${schemas}
 ${styleBlock}
 </head>
 <body>
@@ -275,40 +350,60 @@ ${staticScript(currentId)}
 `;
 }
 
-/* ---- Generate the 37 split pages -------------------------------- */
+/* =================================================================== */
 let count = 0;
+function write(file, html){ fs.writeFileSync(path.join(OUT, file), html); count++; }
+
+/* ---- SPA split pages -------------------------------------------- */
 PAGES.forEach(meta => {
   const node = $('#' + meta.id);
   if (!node.length) { console.warn('!! missing page', meta.id); return; }
-  const inner = node.html();
-  const html = renderPage(meta, inner, meta.id);
-  const file = meta.slug === '' ? 'index.html' : meta.slug + '.html';
-  fs.writeFileSync(path.join(OUT, file), html);
-  count++;
+  const html = renderPage(meta, node.html(), meta.id);
+  write(meta.slug === '' ? 'index.html' : meta.slug + '.html', html);
 });
 
-/* ---- Generate E-E-A-T pages ------------------------------------- */
-EEAT.forEach(meta => {
-  const html = renderPage(meta, meta.html, meta.id);
-  fs.writeFileSync(path.join(OUT, meta.slug + '.html'), html);
-  count++;
+/* ---- E-E-A-T pages ---------------------------------------------- */
+EEAT.forEach(meta => write(meta.slug + '.html', renderPage(meta, meta.html, meta.id)));
+
+/* ---- Content pages (coverage / city / article) ------------------ */
+CONTENT.forEach(meta => {
+  const isArticle = meta.category === 'article' || meta.category === 'coverage';
+  const inner =
+    `<section>\n  <div class="container">\n` +
+    (meta.eyebrow ? `    <div class="section-label">${meta.eyebrow}</div>\n` : '') +
+    `    <h1>${meta.h1 || meta.title}</h1>\n` +
+    (isArticle ? '    ' + reviewByline + '\n' : '') +
+    `  </div>\n</section>\n` +
+    `<section style="padding-top:0">\n  <div class="container">\n${meta.bodyHtml}\n  </div>\n</section>` +
+    faqSection(meta.faq) + contentCta;
+  write(meta.slug + '.html', renderPage(meta, inner, meta.id, [faqLd(meta.faq)]));
 });
 
-/* ---- Generate sitemap.xml --------------------------------------- */
+/* ---- Guides hub page -------------------------------------------- */
+if (ARTICLES.length) {
+  const cards = ARTICLES.map(p =>
+    `      <a class="card" href="/${p.slug}" style="display:block">\n        <h3 style="color:var(--blue)">${p.navLabel || p.h1 || p.title}</h3>\n        <p style="color:var(--muted);font-size:.92rem">${esc(p.desc)}</p>\n      </a>`
+  ).join('\n');
+  const inner =
+    `<section>\n  <div class="container">\n    <div class="section-label">Resources</div>\n    <h1>NYSHIP Rehab Guides &amp; Resources</h1>\n` +
+    `    <p class="section-sub">In-depth, plain-language guides to NYSHIP and Empire Plan addiction-treatment coverage for New York State and government employees.</p>\n` +
+    `    <div class="card-grid-4">\n${cards}\n    </div>\n  </div>\n</section>` + contentCta;
+  write(GUIDES_HUB.slug + '.html', renderPage(GUIDES_HUB, inner, GUIDES_HUB.id));
+}
+
+/* ---- sitemap.xml ------------------------------------------------- */
 const today = process.env.BUILD_DATE || '2026-06-03';
 const urls = [];
-PAGES.forEach(p => {
-  const loc = p.slug === '' ? ORIGIN + '/' : ORIGIN + '/' + p.slug;
-  const pr = p.slug === '' ? '1.0' : '0.8';
-  urls.push({ loc, pr });
-});
+PAGES.forEach(p => urls.push({ loc: p.slug === '' ? ORIGIN + '/' : ORIGIN + '/' + p.slug, pr: p.slug === '' ? '1.0' : '0.8' }));
+COVERAGE.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.8' }));
+CITIES.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.8' }));
+if (ARTICLES.length) urls.push({ loc: ORIGIN + '/' + GUIDES_HUB.slug, pr: '0.7' });
+ARTICLES.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.6' }));
 EEAT.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.5' }));
-const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n' +
-  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-  urls.map(u =>
-    `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${today}</lastmod>\n` +
-    `    <changefreq>weekly</changefreq>\n    <priority>${u.pr}</priority>\n  </url>`
-  ).join('\n') + '\n</urlset>\n';
+const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+  urls.map(u => `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${u.pr}</priority>\n  </url>`).join('\n') +
+  '\n</urlset>\n';
 fs.writeFileSync(path.join(OUT, 'sitemap.xml'), sitemap);
 
 console.log(`✓ Generated ${count} pages + sitemap.xml (${urls.length} URLs)`);
+console.log(`  SPA:${PAGES.length}  EEAT:${EEAT.length}  coverage:${COVERAGE.length}  cities:${CITIES.length}  articles:${ARTICLES.length}`);

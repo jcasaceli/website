@@ -22,19 +22,51 @@
 {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
+  "@id": "https://nyshipdetox.com/#organization",
   "name": "Addiction Rehab Center",
   "url": "https://nyshipdetox.com/",
-  "logo": "https://nyshipdetox.com/logo.png",
-  "sameAs": [
-    "https://www.facebook.com/your",
-    "https://www.instagram.com/your"
+  "telephone": "+12133216518",
+  "medicalSpecialty": "Addiction Medicine",
+  "description": "NYSHIP and Empire Plan addiction treatment — detox, rehab and outpatient care for New York State and government employees.",
+  "areaServed": {
+    "@type": "State",
+    "name": "New York"
+  },
+  "availableService": [
+    {
+      "@type": "MedicalProcedure",
+      "name": "Medical Detox"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Residential Treatment"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Partial Hospitalization"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Intensive Outpatient"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Medication-Assisted Treatment"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Dual Diagnosis Treatment"
+    }
   ],
-  "contactPoint": [{
-    "@type": "ContactPoint",
-    "telephone": "+12133216518",
-    "contactType": "customer service",
-    "areaServed": "US"
-  }]
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+12133216518",
+      "contactType": "admissions",
+      "areaServed": "US",
+      "availableLanguage": "English"
+    }
+  ]
 }
 </script>
 <script type="application/ld+json">
@@ -50,14 +82,18 @@
     "name": "Addiction Rehab Center",
     "url": "https://nyshipdetox.com/"
   },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Addiction Rehab Center",
-    "url": "https://nyshipdetox.com/"
+  "about": {
+    "@type": "MedicalCondition",
+    "name": "Substance Use Disorder"
   },
-  "audience": {
-    "@type": "Audience",
-    "audienceType": "NY State & government employees with NYSHIP / Empire Plan coverage"
+  "publisher": {
+    "@id": "https://nyshipdetox.com/#organization"
+  },
+  "lastReviewed": "2026-06-03",
+  "reviewedBy": {
+    "@type": "Person",
+    "name": "Bradley Tourtlotte, MD",
+    "url": "https://nyshipdetox.com/medical-director"
   }
 }
 </script>
@@ -439,15 +475,6 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
     </button>
     <ul class="nav-menu">
       <li>
-  <span>About <span class="arrow">▼</span></span>
-  <div class="dropdown">
-    <a href="/editorial-policy">Editorial &amp; Review Policy</a>
-    <a href="/references">References &amp; Sources</a>
-    <a href="/medical-director">Medical Director</a>
-    <a href="/clinical-team">Our Team</a>
-  </div>
-</li>
-<li>
         <span>Treatment <span class="arrow">▼</span></span>
         <div class="dropdown wide">
           <div class="dropdown-col">
@@ -477,7 +504,16 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
             <a href="/">EMDR Trauma Therapy</a>
           </div>
         </div>
-      </li>
+      </li><li>
+  <span>Coverage <span class="arrow">▼</span></span>
+  <div class="dropdown">
+      <a href="/nyship-rehab-coverage">Rehab Coverage</a>
+      <a href="/nyship-detox-coverage">Detox Coverage</a>
+      <a href="/nyship-residential-treatment">Residential Treatment</a>
+      <a href="/nyship-outpatient-treatment">Outpatient (PHP/IOP)</a>
+      <a href="/nyship-coverage-verification">Coverage Verification</a>
+  </div>
+</li>
       <li>
         <span>Insurance <span class="arrow">▼</span></span>
         <div class="dropdown">
@@ -529,10 +565,16 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
             <a href="/nyship-rehab-kingston">Kingston, NY</a>
             <a href="/nyship-rehab-plattsburgh">Plattsburgh, NY</a>
           </div>
-        </div>
+        <div class="dropdown-col">
+  <div class="dropdown-col-title">Downstate &amp; NYC</div>
+  <a href="/nyship-rehab-new-york-city">New York City</a>
+  <a href="/nyship-rehab-long-island">Long Island</a>
+  <a href="/nyship-rehab-yonkers">Yonkers</a>
+  <a href="/nyship-rehab-white-plains">White Plains</a>
+</div></div>
       </li>
       <li><a href="#" onclick="scrollSec('faq-section');return false;">FAQ</a></li>
-      <li><a href="#" onclick="scrollSec('verify-section');return false;" class="nav-cta">Verify My Benefits</a></li>
+      <li><a href="/nyship-rehab-guides">Guides</a></li><li><a href="#" onclick="scrollSec('verify-section');return false;" class="nav-cta">Verify My Benefits</a></li>
     </ul>
   </div>
 </nav>
@@ -578,11 +620,19 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
   <a href="/nyship-rehab-watertown">Watertown</a>
   <a href="/nyship-rehab-rome">Rome</a>
   <a href="mailto:support@alumniaidservices.com">✉ support@alumniaidservices.com</a>
-  <div class="mob-section-title">About</div>
-<a href="/editorial-policy">Editorial &amp; Review Policy</a>
-<a href="/references">References &amp; Sources</a>
-<a href="/medical-director">Medical Director</a>
-<a href="/clinical-team">Our Team</a>
+  <div class="mob-section-title">Guides</div>
+<a href="/nyship-rehab-guides">All NYSHIP Rehab Guides</a>
+<div class="mob-section-title">Downstate &amp; NYC</div>
+<a href="/nyship-rehab-new-york-city">New York City</a>
+<a href="/nyship-rehab-long-island">Long Island</a>
+<a href="/nyship-rehab-yonkers">Yonkers</a>
+<a href="/nyship-rehab-white-plains">White Plains</a>
+<div class="mob-section-title">Coverage</div>
+<a href="/nyship-rehab-coverage">Rehab Coverage</a>
+<a href="/nyship-detox-coverage">Detox Coverage</a>
+<a href="/nyship-residential-treatment">Residential Treatment</a>
+<a href="/nyship-outpatient-treatment">Outpatient (PHP/IOP)</a>
+<a href="/nyship-coverage-verification">Coverage Verification</a>
 <a href="tel:2133216518" class="mobile-cta">📞 213-321-6518</a>
 </div>
 <div id="spa-container">
@@ -809,13 +859,12 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
   </div>
 </footer>
 <script>
-var NAV_MAP = {"p-home":"/","p-albany":"/nyship-rehab-albany","p-buffalo":"/nyship-rehab-buffalo","p-syracuse":"/nyship-rehab-syracuse","p-rochester":"/nyship-rehab-rochester","p-poughkeepsie":"/nyship-rehab-poughkeepsie","p-binghamton":"/nyship-rehab-binghamton","p-schenectady":"/nyship-rehab-schenectady","p-troy":"/nyship-rehab-troy","p-utica":"/nyship-rehab-utica","p-newburgh":"/nyship-rehab-newburgh","p-saratoga":"/nyship-rehab-saratoga-springs","p-kingston":"/nyship-rehab-kingston","p-plattsburgh":"/nyship-rehab-plattsburgh","p-watertown":"/nyship-rehab-watertown","p-rome":"/nyship-rehab-rome","p-alcohol":"/alcohol-detox-treatment","p-cocaine":"/cocaine-addiction-treatment","p-kratom":"/kratom-addiction-treatment","p-painkillers":"/prescription-painkiller-addiction-treatment","p-opioids":"/opioid-addiction-treatment","p-benzos":"/benzodiazepine-detox-treatment","p-dual":"/dual-diagnosis-treatment","p-mat":"/medication-assisted-treatment","p-nyship":"/does-nyship-cover-rehab","p-empire":"/empire-plan-rehab-coverage","p-cdphp":"/does-cdphp-cover-rehab","p-mvp":"/does-mvp-cover-rehab","p-emblem":"/does-emblemhealth-cover-rehab","p-excellus":"/does-excellus-cover-rehab","p-state":"/nys-agency-employee-rehab","p-schools":"/teacher-school-employee-rehab","p-suny":"/suny-cuny-employee-rehab","p-county":"/county-city-employee-rehab","p-fire":"/firefighter-ems-rehab","p-doccs":"/corrections-officer-rehab","p-retirees":"/nyship-retiree-rehab","p-editorial":"/editorial-policy","p-references":"/references","p-medical-director":"/medical-director","p-clinical-team":"/clinical-team"};
+var NAV_MAP = {"p-home":"/","p-albany":"/nyship-rehab-albany","p-buffalo":"/nyship-rehab-buffalo","p-syracuse":"/nyship-rehab-syracuse","p-rochester":"/nyship-rehab-rochester","p-poughkeepsie":"/nyship-rehab-poughkeepsie","p-binghamton":"/nyship-rehab-binghamton","p-schenectady":"/nyship-rehab-schenectady","p-troy":"/nyship-rehab-troy","p-utica":"/nyship-rehab-utica","p-newburgh":"/nyship-rehab-newburgh","p-saratoga":"/nyship-rehab-saratoga-springs","p-kingston":"/nyship-rehab-kingston","p-plattsburgh":"/nyship-rehab-plattsburgh","p-watertown":"/nyship-rehab-watertown","p-rome":"/nyship-rehab-rome","p-alcohol":"/alcohol-detox-treatment","p-cocaine":"/cocaine-addiction-treatment","p-kratom":"/kratom-addiction-treatment","p-painkillers":"/prescription-painkiller-addiction-treatment","p-opioids":"/opioid-addiction-treatment","p-benzos":"/benzodiazepine-detox-treatment","p-dual":"/dual-diagnosis-treatment","p-mat":"/medication-assisted-treatment","p-nyship":"/does-nyship-cover-rehab","p-empire":"/empire-plan-rehab-coverage","p-cdphp":"/does-cdphp-cover-rehab","p-mvp":"/does-mvp-cover-rehab","p-emblem":"/does-emblemhealth-cover-rehab","p-excellus":"/does-excellus-cover-rehab","p-state":"/nys-agency-employee-rehab","p-schools":"/teacher-school-employee-rehab","p-suny":"/suny-cuny-employee-rehab","p-county":"/county-city-employee-rehab","p-fire":"/firefighter-ems-rehab","p-doccs":"/corrections-officer-rehab","p-retirees":"/nyship-retiree-rehab","p-editorial":"/editorial-policy","p-references":"/references","p-medical-director":"/medical-director","p-clinical-team":"/clinical-team","c-empire-plan-substance-abuse-benefits":"/empire-plan-substance-abuse-benefits","c-nyship-prior-authorization-guide":"/nyship-prior-authorization-guide","c-how-much-does-rehab-cost-with-nyship":"/how-much-does-rehab-cost-with-nyship","c-nyship-copay-deductible-rehab":"/nyship-copay-deductible-rehab","c-does-nyship-cover-out-of-network-rehab":"/does-nyship-cover-out-of-network-rehab","c-fmla-rehab-ny-state-employees":"/fmla-rehab-ny-state-employees","c-will-rehab-affect-my-state-job":"/will-rehab-affect-my-state-job","c-medical-leave-for-rehab-nyship":"/medical-leave-for-rehab-nyship","c-is-rehab-confidential-state-employee":"/is-rehab-confidential-state-employee","c-addiction-help-without-losing-job-ny":"/addiction-help-without-losing-job-ny","c-what-to-expect-in-detox":"/what-to-expect-in-detox","c-how-to-choose-a-rehab-nyship":"/how-to-choose-a-rehab-nyship","c-signs-you-need-addiction-treatment":"/signs-you-need-addiction-treatment","c-family-guide-loved-one-addiction-ny":"/family-guide-loved-one-addiction-ny","c-levels-of-addiction-care":"/levels-of-addiction-care","c-nyship-rehab-new-york-city":"/nyship-rehab-new-york-city","c-nyship-rehab-long-island":"/nyship-rehab-long-island","c-nyship-rehab-yonkers":"/nyship-rehab-yonkers","c-nyship-rehab-white-plains":"/nyship-rehab-white-plains","c-nyship-rehab-coverage":"/nyship-rehab-coverage","c-nyship-detox-coverage":"/nyship-detox-coverage","c-nyship-residential-treatment":"/nyship-residential-treatment","c-nyship-outpatient-treatment":"/nyship-outpatient-treatment","c-nyship-coverage-verification":"/nyship-coverage-verification","p-guides":"/nyship-rehab-guides"};
 var currentPage = "p-newburgh";
 function goTo(pid){ window.location.href = NAV_MAP[pid] || '/'; }
 function scrollSec(cls){
   var page = document.getElementById(currentPage) || document.body;
-  var el = page.querySelector('#'+cls) || page.querySelector('.'+cls)
-        || document.querySelector('.'+cls);
+  var el = page.querySelector('#'+cls) || page.querySelector('.'+cls) || document.querySelector('.'+cls);
   if(el){ var top = el.getBoundingClientRect().top + window.pageYOffset - 80;
     window.scrollTo({top:top, behavior:'smooth'}); }
 }

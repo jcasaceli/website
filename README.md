@@ -6,7 +6,12 @@ This folder contains the nyshipdetox.com site and helper files to deploy on Netl
 
 `addiction-rehab-center.html` is the **content source** — one big file holding every page section. `build.js` splits it into individual, SEO-indexable static pages (one URL each), generates the homepage (`index.html`), the E-E-A-T pages, and `sitemap.xml`.
 
-**To update the site:** edit the relevant section in `addiction-rehab-center.html` (or `eeat-content.js` for trust pages), then run:
+Content sources:
+- `addiction-rehab-center.html` — the original SPA sections (home, locations, treatments, insurance, audiences)
+- `eeat-content.js` — trust pages (editorial policy, references, medical director, clinical team)
+- `content/*.json` — coverage pages, downstate city pages, and guide articles (each object becomes one page; `category` of `coverage`/`location`/`article` controls nav placement and the guides hub). FAQ items in each object generate on-page accordions **and** FAQPage schema.
+
+**To update the site:** edit the relevant source (the HTML section, `eeat-content.js`, or the matching `content/*.json`), then run:
 
 ```
 npm install      # first time only — installs cheerio
