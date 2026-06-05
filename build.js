@@ -349,16 +349,24 @@ function renderPage(meta, innerHTML, currentId, extraSchema) {
 <meta name="description" content="${esc(meta.desc)}"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="${url}"/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="256x256" href="/favicon-256.png"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="${url}"/>
 <meta property="og:title" content="${esc(meta.title)}"/>
 <meta property="og:description" content="${esc(meta.desc)}"/>
 <meta property="og:site_name" content="Addiction Rehab Center"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:image" content="${ORIGIN}/logo.png"/>
+<meta property="og:image" content="${ORIGIN}/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="${esc(meta.title)}"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="${esc(meta.title)}"/>
 <meta name="twitter:description" content="${esc(meta.desc)}"/>
+<meta name="twitter:image" content="${ORIGIN}/og-image.png"/>
 ${schemas}
 ${styleBlock}
 </head>
