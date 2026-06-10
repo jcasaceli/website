@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="Guide to NYSHIP and Empire Plan addiction treatment coverage">
+  <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a5fa8"/><stop offset="1" stop-color="#0f2d4a"/></linearGradient></defs>
+  <rect width="1200" height="420" fill="url(#g2)"/>
+  <rect x="500" y="120" width="200" height="180" rx="10" fill="#e6f0fb" opacity=".14"/>
+  <rect x="530" y="158" width="140" height="14" rx="7" fill="#f0a030"/>
+  <rect x="530" y="190" width="140" height="10" rx="5" fill="#e6f0fb" opacity=".5"/>
+  <rect x="530" y="214" width="110" height="10" rx="5" fill="#e6f0fb" opacity=".5"/>
+  <rect x="530" y="238" width="130" height="10" rx="5" fill="#e6f0fb" opacity=".5"/>
+</svg>

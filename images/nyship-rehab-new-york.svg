@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="NYSHIP-covered rehab serving New York State employees">
+  <defs><linearGradient id="m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a5fa8"/><stop offset="1" stop-color="#e6f0fb"/></linearGradient></defs>
+  <rect width="1200" height="420" fill="url(#m)"/>
+  <path d="M600 120 c-44 0 -78 34 -78 78 c0 58 78 122 78 122 s78 -64 78 -122 c0 -44 -34 -78 -78 -78 z" fill="#f0a030"/>
+  <circle cx="600" cy="196" r="27" fill="#0f2d4a"/>
+  <path d="M0 320 Q300 286 600 320 T1200 320 V420 H0 Z" fill="#134880" opacity=".55"/>
+</svg>

@@ -406,6 +406,17 @@ EEAT.forEach(meta => {
 });
 
 /* ---- Content pages (coverage / city / article) ------------------ */
+const NY_CAT_IMG = {
+  location: 'images/nyship-rehab-new-york.svg',
+  article: 'images/nyship-addiction-treatment-guide.svg',
+  coverage: 'images/nyship-empire-plan-rehab.svg'
+};
+function nyHeroImg(meta){
+  const src = NY_CAT_IMG[meta.category] || 'images/nyship-empire-plan-rehab.svg';
+  const kw = meta.h1 || meta.title;                 // keyword-rich, per-page
+  const alt = (kw + ' | NYSHIP & Empire Plan Rehab').replace(/<[^>]+>/g,'');
+  return `<img src="/${src}" alt="${esc(alt)}" title="${esc(kw.replace(/<[^>]+>/g,''))}" width="1200" height="420" loading="eager" style="width:100%;height:auto;border-radius:14px;margin:1.2rem 0 1.6rem"/>`;
+}
 CONTENT.forEach(meta => {
   const isArticle = meta.category === 'article' || meta.category === 'coverage';
   const inner =
@@ -413,6 +424,7 @@ CONTENT.forEach(meta => {
     (meta.eyebrow ? `    <div class="section-label">${meta.eyebrow}</div>\n` : '') +
     `    <h1>${meta.h1 || meta.title}</h1>\n` +
     (isArticle ? '    ' + reviewByline + '\n' : '') +
+    `    ${nyHeroImg(meta)}\n` +
     `  </div>\n</section>\n` +
     `<section style="padding-top:0">\n  <div class="container">\n${meta.bodyHtml}\n  </div>\n</section>` +
     faqSection(meta.faq) + contentCta;
