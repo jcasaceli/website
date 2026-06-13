@@ -122,6 +122,10 @@ if (fs.existsSync(contentDir)) {
 const COVERAGE = CONTENT.filter(p => p.category === 'coverage');
 const CITIES   = CONTENT.filter(p => p.category === 'location');
 const ARTICLES = CONTENT.filter(p => p.category === 'article');
+const BLOG = CONTENT.filter(p => p.category === 'blog');
+const BLOG_HUB = { id: 'p-blog', slug: 'blog', navLabel: 'Blog',
+  title: 'NYSHIP Addiction & Recovery Blog | Empire Plan Rehab',
+  desc: 'Expert, sourced articles on addiction, recovery and NYSHIP / Empire Plan coverage for NY State employees — citing NIDA, SAMHSA and other authorities.' };
 const GUIDES_HUB = { id: 'p-guides', slug: 'nyship-rehab-guides', navLabel: 'Guides',
   title: 'NYSHIP Rehab Guides & Resources | Addiction Treatment for NY Employees',
   desc: 'In-depth guides on NYSHIP and Empire Plan addiction-treatment coverage, costs, job protection, and how to choose care for NY State and government employees.' };
@@ -209,6 +213,9 @@ if (CITIES.length) {
 if (ARTICLES.length) {
   navMenu.find('li').last().before(`<li><a href="/${GUIDES_HUB.slug}">Guides</a></li>`);
 }
+if (BLOG.length) {
+  navMenu.find('li').last().before(`<li><a href="/blog/">Blog</a></li>`);
+}
 
 /* ---- Mobile menu: append new sections --------------------------- */
 const mob = $('#mobileMenu');
@@ -220,13 +227,14 @@ const mobCta = mob.find('.mobile-cta');
 if (ARTICLES.length) mobCta.before(`<div class="mob-section-title">Guides</div>\n<a href="/${GUIDES_HUB.slug}">All NYSHIP Rehab Guides</a>\n`);
 if (CITIES.length) mobCta.before(mobSection('Downstate &amp; NYC', CITIES));
 if (COVERAGE.length) mobCta.before(mobSection('Coverage', COVERAGE));
+if (BLOG.length) mobCta.before(`<div class="mob-section-title">Blog</div>\n<a href="/blog/">Recovery Blog</a>\n`);
 
 /* ---- Extract shared chrome (links now rewritten) ---------------- */
 const crisisBar = $('.crisis-bar').first().toString();
 const navHTML = $('nav').first().toString();
 const mobileMenu = $('#mobileMenu').toString();
 // site-wide footer link to the HTML sitemap (aids crawl/discovery of every page)
-$('footer').append('<div style="text-align:center;padding:1.1rem 5%;border-top:1px solid rgba(255,255,255,.12)"><a href="/site-map" style="color:rgba(255,255,255,.6);font-size:.82rem;letter-spacing:.3px">Site Map &middot; Browse All Pages</a></div>');
+$('footer').append('<div style="text-align:center;padding:1.1rem 5%;border-top:1px solid rgba(255,255,255,.12)"><a href="/blog/" style="color:rgba(255,255,255,.6);font-size:.82rem;letter-spacing:.3px;margin-right:1.2rem">Blog</a><a href="/site-map" style="color:rgba(255,255,255,.6);font-size:.82rem;letter-spacing:.3px">Site Map &middot; Browse All Pages</a></div>');
 const footerHTML = $('footer').first().toString();
 
 /* ---- Static per-page script ------------------------------------- */
@@ -424,7 +432,7 @@ function nyHeroImg(meta){
   const alt = (kw + ' | NYSHIP & Empire Plan Rehab').replace(/<[^>]+>/g,'');
   return `<img src="/${src}" alt="${esc(alt)}" title="${esc(kw.replace(/<[^>]+>/g,''))}" width="1200" height="420" loading="eager" style="width:100%;height:auto;border-radius:14px;margin:1.2rem 0 1.6rem"/>`;
 }
-CONTENT.forEach(meta => {
+CONTENT.filter(meta=>meta.category!=='blog').forEach(meta => {
   const isArticle = meta.category === 'article' || meta.category === 'coverage';
   const inner =
     `<section>\n  <div class="container">\n` +
@@ -455,6 +463,33 @@ if (ARTICLES.length) {
   write(GUIDES_HUB.slug + '.html', renderPage(GUIDES_HUB, inner, GUIDES_HUB.id));
 }
 
+/* ---- Blog — dated, sourced posts with Article schema, at /blog/<slug> */
+if (BLOG.length) {
+  fs.mkdirSync(path.join(OUT,'blog'), { recursive: true });
+  const D = ['2026-06-01','2026-06-02','2026-06-03','2026-06-04','2026-06-05','2026-06-06','2026-06-07','2026-06-08','2026-06-09','2026-06-10','2026-06-11','2026-06-12'];
+  BLOG.forEach((p,i)=>{ p.date = p.date || D[Math.min(D.length-1, Math.round(i*(D.length-1)/Math.max(1,BLOG.length-1)))]; });
+  const sorted = BLOG.slice().sort((a,b)=> a.date<b.date?1:-1);
+  BLOG.forEach(p=>{
+    const url = ORIGIN + '/blog/' + p.slug;
+    const author = p.author || 'NYSHIP Detox Editorial Team';
+    const byline = `<p class="review-byline" style="color:var(--muted);font-size:.9rem;border-left:3px solid var(--blue);padding-left:.8rem;margin:.2rem 0 1.5rem">By ${esc(author)} &middot; Published ${p.date} &middot; Medically reviewed by <a href="/medical-director" style="color:var(--blue);font-weight:600">Bradley Tourtlotte, MD</a></p>`;
+    const sources = (p.sources&&p.sources.length) ? `<section style="padding-top:0"><div class="container" style="max-width:780px"><h2>Sources &amp; References</h2><ul>${p.sources.map(s=>`<li style="margin:.3rem 0"><a href="${s.url}" target="_blank" rel="noopener">${esc(s.name)}</a></li>`).join('')}</ul></div></section>` : '';
+    const inner = `<section>\n  <div class="container" style="max-width:820px">\n    <div class="section-label">Blog</div>\n    <h1>${esc(p.h1||p.title)}</h1>${byline}\n  </div>\n</section>` +
+      `<section style="padding-top:0">\n  <div class="container" style="max-width:820px">\n${p.bodyHtml}\n  </div>\n</section>` +
+      faqSection(p.faq) + sources + contentCta;
+    const articleLd = '<script type="application/ld+json">\n' + JSON.stringify({
+      '@context':'https://schema.org','@type':'BlogPosting', headline:p.title, description:p.desc,
+      datePublished:p.date, dateModified:p.date, inLanguage:'en-US',
+      author:{'@type':'Organization', name:author}, publisher:{'@id':ORIGIN+'/#organization'},
+      image:ORIGIN+'/og-image.png', mainEntityOfPage:url, reviewedBy:{'@id':REVIEWER_ID}
+    }, null, 2) + '\n</script>';
+    write('blog/'+p.slug+'.html', renderPage({slug:'blog/'+p.slug, title:p.title, desc:p.desc}, inner, 'p-blog-'+p.slug, [articleLd, faqLd(p.faq)]));
+  });
+  const items = sorted.map(p=>`<a class="card" href="/blog/${p.slug}" style="display:block"><p style="color:var(--muted);font-size:.78rem;margin-bottom:.3rem">${p.date}</p><h3 style="color:var(--blue)">${esc(p.title)}</h3><p style="color:var(--muted);font-size:.9rem">${esc(p.desc)}</p></a>`).join('\n');
+  const hubInner = `<section>\n  <div class="container">\n    <div class="section-label">Blog</div>\n    <h1>NYSHIP Addiction &amp; Recovery Blog</h1>\n    <p class="section-sub">Expert, sourced articles on addiction, recovery and NYSHIP coverage — reviewed by our medical director.</p>\n    <div class="card-grid-4">\n${items}\n    </div>\n  </div>\n</section>` + contentCta;
+  write('blog/index.html', renderPage({slug:'blog/', title:BLOG_HUB.title, desc:BLOG_HUB.desc}, hubInner, 'p-blog'));
+}
+
 /* ---- HTML site map (internal-linking hub to aid crawl/discovery) - */
 {
   const li = items => '<ul style="columns:2;-webkit-columns:2;list-style:none;padding:0;margin:.5rem 0 2.2rem">' +
@@ -472,6 +507,7 @@ if (ARTICLES.length) {
     (covLinks.length ? `<h2>Coverage</h2>${li(covLinks)}` : '') +
     (cityLinks.length ? `<h2>Downstate Locations</h2>${li(cityLinks)}` : '') +
     (artLinks.length ? `<h2>Guides</h2>${li(artLinks)}` : '') +
+    (BLOG.length ? `<h2>Blog</h2>${li(BLOG.map(p=>({href:'/blog/'+p.slug,label:clean(p.title)})).concat([{href:'/blog/',label:'Blog Home'}]))}` : '') +
     `<h2>About</h2>${li(eeatLinks)}` +
     `</div>\n</section>`;
   write(SITEMAP_PAGE.slug + '.html', renderPage(SITEMAP_PAGE, inner, SITEMAP_PAGE.id));
@@ -486,6 +522,8 @@ CITIES.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.8' }));
 if (ARTICLES.length) urls.push({ loc: ORIGIN + '/' + GUIDES_HUB.slug, pr: '0.7' });
 ARTICLES.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.6' }));
 EEAT.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.5' }));
+if (BLOG.length) urls.push({ loc: ORIGIN + '/blog/', pr: '0.7' });
+BLOG.forEach(p => urls.push({ loc: ORIGIN + '/blog/' + p.slug, pr: '0.6' }));
 urls.push({ loc: ORIGIN + '/' + SITEMAP_PAGE.slug, pr: '0.3' });
 const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   urls.map(u => `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${u.pr}</priority>\n  </url>`).join('\n') +
