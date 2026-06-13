@@ -355,6 +355,7 @@ function renderPage(meta, innerHTML, currentId, extraSchema) {
 <meta name="description" content="${esc(meta.desc)}"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="${url}"/>
+<link rel="icon" href="/favicon.ico" sizes="32x32"/>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
 <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256.png"/>
@@ -434,7 +435,12 @@ CONTENT.forEach(meta => {
     `  </div>\n</section>\n` +
     `<section style="padding-top:0">\n  <div class="container">\n${meta.bodyHtml}\n  </div>\n</section>` +
     faqSection(meta.faq) + contentCta;
-  write(meta.slug + '.html', renderPage(meta, inner, meta.id, [faqLd(meta.faq)]));
+  const crumb = '<script type="application/ld+json">\n' + JSON.stringify({
+    '@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[
+      {'@type':'ListItem',position:1,name:'Home',item:ORIGIN+'/'},
+      {'@type':'ListItem',position:2,name:stripTags(meta.h1||meta.title).split('|')[0].trim(),item:ORIGIN+'/'+meta.slug}
+    ]}, null, 2) + '\n</script>';
+  write(meta.slug + '.html', renderPage(meta, inner, meta.id, [faqLd(meta.faq), crumb]));
 });
 
 /* ---- Guides hub page -------------------------------------------- */
