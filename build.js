@@ -125,6 +125,9 @@ const ARTICLES = CONTENT.filter(p => p.category === 'article');
 const GUIDES_HUB = { id: 'p-guides', slug: 'nyship-rehab-guides', navLabel: 'Guides',
   title: 'NYSHIP Rehab Guides & Resources | Addiction Treatment for NY Employees',
   desc: 'In-depth guides on NYSHIP and Empire Plan addiction-treatment coverage, costs, job protection, and how to choose care for NY State and government employees.' };
+const SITEMAP_PAGE = { id: 'p-sitemap', slug: 'site-map',
+  title: 'Site Map — All Pages | NYSHIP & Empire Plan Rehab',
+  desc: 'Browse every page on nyshipdetox.com — NYSHIP and Empire Plan rehab coverage, locations, treatments and guides for NY State and government employees.' };
 
 /* ---- Slug map (id -> path) -------------------------------------- */
 const slugMap = {};
@@ -132,6 +135,7 @@ PAGES.forEach(p => { slugMap[p.id] = p.slug === '' ? '/' : '/' + p.slug; });
 EEAT.forEach(p => { slugMap[p.id] = '/' + p.slug; });
 CONTENT.forEach(p => { slugMap[p.id] = '/' + p.slug; });
 if (ARTICLES.length) slugMap[GUIDES_HUB.id] = '/' + GUIDES_HUB.slug;
+slugMap[SITEMAP_PAGE.id] = '/' + SITEMAP_PAGE.slug;
 
 /* =================================================================== */
 const raw = fs.readFileSync(SOURCE, 'utf8');
@@ -221,6 +225,8 @@ if (COVERAGE.length) mobCta.before(mobSection('Coverage', COVERAGE));
 const crisisBar = $('.crisis-bar').first().toString();
 const navHTML = $('nav').first().toString();
 const mobileMenu = $('#mobileMenu').toString();
+// site-wide footer link to the HTML sitemap (aids crawl/discovery of every page)
+$('footer').append('<div style="text-align:center;padding:1.1rem 5%;border-top:1px solid rgba(255,255,255,.12)"><a href="/site-map" style="color:rgba(255,255,255,.6);font-size:.82rem;letter-spacing:.3px">Site Map &middot; Browse All Pages</a></div>');
 const footerHTML = $('footer').first().toString();
 
 /* ---- Static per-page script ------------------------------------- */
@@ -443,6 +449,28 @@ if (ARTICLES.length) {
   write(GUIDES_HUB.slug + '.html', renderPage(GUIDES_HUB, inner, GUIDES_HUB.id));
 }
 
+/* ---- HTML site map (internal-linking hub to aid crawl/discovery) - */
+{
+  const li = items => '<ul style="columns:2;-webkit-columns:2;list-style:none;padding:0;margin:.5rem 0 2.2rem">' +
+    items.map(p => `<li style="padding:.32rem 0;break-inside:avoid"><a href="${p.href}" style="color:var(--blue);font-weight:500">${esc(p.label)}</a></li>`).join('') + '</ul>';
+  const clean = s => String(s).replace(/<[^>]+>/g, '').split('|')[0].trim();
+  const mainLinks = PAGES.filter(p => p.slug !== '').map(p => ({ href: '/' + p.slug, label: clean(p.title) }));
+  const covLinks = COVERAGE.map(p => ({ href: '/' + p.slug, label: clean(p.h1 || p.title) }));
+  const cityLinks = CITIES.map(p => ({ href: '/' + p.slug, label: clean(p.navLabel || p.h1 || p.title) }));
+  const artLinks = ARTICLES.map(p => ({ href: '/' + p.slug, label: clean(p.navLabel || p.h1 || p.title) }));
+  const eeatLinks = EEAT.map(p => ({ href: '/' + p.slug, label: clean(p.navLabel) }));
+  if (ARTICLES.length) artLinks.push({ href: '/' + GUIDES_HUB.slug, label: 'All NYSHIP Rehab Guides' });
+  const inner = `<section>\n<div class="container">\n<div class="section-label">Site Map</div>\n<h1>Browse All Pages</h1>\n` +
+    `<p class="section-sub">Every page on nyshipdetox.com, in one place — so you (and search engines) can find it all.</p>\n` +
+    `<h2>Main Pages</h2>${li(mainLinks)}` +
+    (covLinks.length ? `<h2>Coverage</h2>${li(covLinks)}` : '') +
+    (cityLinks.length ? `<h2>Downstate Locations</h2>${li(cityLinks)}` : '') +
+    (artLinks.length ? `<h2>Guides</h2>${li(artLinks)}` : '') +
+    `<h2>About</h2>${li(eeatLinks)}` +
+    `</div>\n</section>`;
+  write(SITEMAP_PAGE.slug + '.html', renderPage(SITEMAP_PAGE, inner, SITEMAP_PAGE.id));
+}
+
 /* ---- sitemap.xml ------------------------------------------------- */
 const today = process.env.BUILD_DATE || '2026-06-03';
 const urls = [];
@@ -452,6 +480,7 @@ CITIES.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.8' }));
 if (ARTICLES.length) urls.push({ loc: ORIGIN + '/' + GUIDES_HUB.slug, pr: '0.7' });
 ARTICLES.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.6' }));
 EEAT.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.5' }));
+urls.push({ loc: ORIGIN + '/' + SITEMAP_PAGE.slug, pr: '0.3' });
 const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   urls.map(u => `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${u.pr}</priority>\n  </url>`).join('\n') +
   '\n</urlset>\n';
