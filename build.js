@@ -197,6 +197,27 @@ $('a[onclick]').each((_, el) => {
   if (m) { a.attr('href', slugMap[m[1]] || '/'); a.removeAttr('onclick'); }
 });
 
+/* ---- Netlify Forms: make every form detectable + submittable ----- */
+$('form').each((_, f) => {
+  const $f = $(f);
+  $f.attr('name', 'benefits-verification');
+  $f.attr('method', 'POST');
+  $f.attr('data-netlify', 'true');
+  $f.attr('netlify-honeypot', 'bot-field');
+  $f.removeAttr('onsubmit');
+  $f.prepend('<input type="hidden" name="form-name" value="benefits-verification"/><p hidden><label>Leave this blank: <input name="bot-field"/></label></p>');
+  // every field needs a name or its value won't be submitted
+  $f.find('input, select, textarea').each((j, el) => {
+    const $el = $(el), type = ($el.attr('type') || el.tagName.toLowerCase());
+    if (type === 'hidden' || type === 'submit' || type === 'button') return;
+    if (!$el.attr('name')) {
+      let nm = $el.attr('id') || $el.attr('placeholder') || (type + '-' + j);
+      nm = String(nm).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || ('field-' + j);
+      $el.attr('name', nm);
+    }
+  });
+});
+
 /* ---- Inject new nav menus (Coverage, Guides, Downstate cities) --- */
 const navMenu = $('.nav-menu').first();
 if (COVERAGE.length) {
@@ -277,10 +298,16 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!isOpen) item.classList.add('open');
   });
   document.addEventListener('submit', function(e){
-    if(e.target.tagName==='FORM'){ e.preventDefault();
-      var btn=e.target.querySelector('.submit-btn');
-      if(btn){ btn.textContent='Submitted! We will call you within a few hours.';
-        btn.style.background='var(--green)'; btn.disabled=true; } }
+    if(e.target.tagName!=='FORM') return;
+    e.preventDefault();
+    var form=e.target, btn=form.querySelector('.submit-btn');
+    try{
+      var body=new URLSearchParams(new FormData(form));
+      if(!body.has('form-name')) body.append('form-name', form.getAttribute('name')||'benefits-verification');
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()}).catch(function(){});
+    }catch(err){}
+    if(btn){ btn.textContent='Submitted! We will call you within a few hours.';
+      btn.style.background='var(--green)'; btn.disabled=true; }
   });
 });
 </script>

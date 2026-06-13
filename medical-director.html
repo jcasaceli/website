@@ -784,10 +784,16 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!isOpen) item.classList.add('open');
   });
   document.addEventListener('submit', function(e){
-    if(e.target.tagName==='FORM'){ e.preventDefault();
-      var btn=e.target.querySelector('.submit-btn');
-      if(btn){ btn.textContent='Submitted! We will call you within a few hours.';
-        btn.style.background='var(--green)'; btn.disabled=true; } }
+    if(e.target.tagName!=='FORM') return;
+    e.preventDefault();
+    var form=e.target, btn=form.querySelector('.submit-btn');
+    try{
+      var body=new URLSearchParams(new FormData(form));
+      if(!body.has('form-name')) body.append('form-name', form.getAttribute('name')||'benefits-verification');
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()}).catch(function(){});
+    }catch(err){}
+    if(btn){ btn.textContent='Submitted! We will call you within a few hours.';
+      btn.style.background='var(--green)'; btn.disabled=true; }
   });
 });
 </script>
