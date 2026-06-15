@@ -254,6 +254,8 @@ if (BLOG.length) mobCta.before(`<div class="mob-section-title">Blog</div>\n<a hr
 const crisisBar = $('.crisis-bar').first().toString();
 const navHTML = $('nav').first().toString();
 const mobileMenu = $('#mobileMenu').toString();
+// site-wide footer: link every guide + blog post (deep pages -> 1 click from every page, aids discovery)
+$('footer').append(`<div style="padding:1.4rem 5% 0;border-top:1px solid rgba(255,255,255,.12);margin-top:1rem"><h4 style="color:#fff;font-size:.92rem;margin-bottom:.6rem">Guides &amp; Recovery Blog</h4><div style="columns:4;-webkit-columns:4;column-gap:1.4rem">${ARTICLES.map(p=>`<a href="/${p.slug}" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">${esc(stripTags(p.navLabel||p.h1||p.title).slice(0,42))}</a>`).join('')}${BLOG.map(p=>`<a href="/blog/${p.slug}" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">${esc(stripTags(p.title).slice(0,42))}</a>`).join('')}<a href="/blog/" style="display:block;color:#cca967;font-size:.8rem;padding:.15rem 0;font-weight:700;break-inside:avoid">All Posts &rarr;</a></div></div>`);
 // site-wide footer link to the HTML sitemap (aids crawl/discovery of every page)
 $('footer').append('<div style="text-align:center;padding:1.1rem 5%;border-top:1px solid rgba(255,255,255,.12)"><a href="/blog/" style="color:rgba(255,255,255,.6);font-size:.82rem;letter-spacing:.3px;margin-right:1.2rem">Blog</a><a href="/site-map" style="color:rgba(255,255,255,.6);font-size:.82rem;letter-spacing:.3px">Site Map &middot; Browse All Pages</a></div>');
 const footerHTML = $('footer').first().toString();
