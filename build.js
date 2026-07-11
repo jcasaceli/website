@@ -84,7 +84,7 @@ const PAGES = [
     desc: 'CDPHP NYSHIP HMO addiction treatment coverage for Capital Region NY State employees — detox, rehab and outpatient care explained. Free verification. Call ' + PHONE + '.' },
   { id: 'p-mvp', slug: 'does-mvp-cover-rehab', title: 'Does MVP Health Care Cover Rehab? NYSHIP Addiction Treatment',
     desc: 'MVP Health Care NYSHIP HMO addiction treatment coverage for NY State employees — detox, inpatient and outpatient rehab explained. Free benefits check. Call ' + PHONE + '.' },
-  { id: 'p-emblem', slug: 'does-emblemhealth-cover-rehab', title: 'Does EmblemHealth Cover Rehab? NYSHIP Addiction Treatment Coverage',
+  { id: 'p-emblem', slug: 'does-emblemhealth-cover-rehab', title: 'Does EmblemHealth (GHI) Cover Rehab? NYSHIP Coverage Guide',
     desc: 'EmblemHealth NYSHIP HMO addiction treatment coverage for NY State employees — detox, rehab and MAT explained. Confidential benefits verification. Call ' + PHONE + '.' },
   { id: 'p-excellus', slug: 'does-excellus-cover-rehab', title: 'Does Excellus BlueCross BlueShield Cover Rehab? NYSHIP Coverage',
     desc: 'Excellus BCBS NYSHIP HMO addiction treatment coverage for Western & Central NY State employees — detox and rehab explained. Free verification. Call ' + PHONE + '.' },
@@ -211,8 +211,11 @@ $('form').each((_, f) => {
     const $el = $(el), type = ($el.attr('type') || el.tagName.toLowerCase());
     if (type === 'hidden' || type === 'submit' || type === 'button') return;
     if (!$el.attr('name')) {
-      let nm = $el.attr('id') || $el.attr('placeholder') || (type + '-' + j);
-      nm = String(nm).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || ('field-' + j);
+      // Derive a clean, meaningful name from the field's label (so Netlify leads
+      // read "first_name", not "jane"). Falls back to id/placeholder/type.
+      const labelTxt = $el.closest('.form-group').find('label').first().text().replace(/\*/g, '').trim();
+      let nm = labelTxt || $el.attr('id') || $el.attr('placeholder') || (type + '-' + j);
+      nm = String(nm).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || ('field_' + j);
       $el.attr('name', nm);
     }
   });
@@ -362,13 +365,51 @@ const reviewByline =
 
 const contentCta = `
 <section class="verify-section" id="verify-section" style="background:var(--sky)">
-  <div class="container" style="text-align:center">
-    <div class="section-label">Free &amp; Confidential</div>
-    <h2>Verify Your NYSHIP Benefits — No Cost, No Obligation</h2>
-    <p class="section-sub" style="margin:0 auto 2rem">We confirm your exact NYSHIP / Empire Plan coverage and report back, usually within a few hours. HIPAA &amp; 42 CFR Part 2 protected.</p>
-    <a href="tel:${TEL}" class="btn-primary">Call ${PHONE}</a>
+  <div class="container">
+    <div class="verify-grid">
+      <div class="verify-info">
+        <div class="section-label">Free &amp; Confidential</div>
+        <h2>Verify Your NYSHIP Benefits — No Cost, No Obligation</h2>
+        <p>Submit your info and our admissions team will confirm your exact NYSHIP / Empire Plan coverage and report back — usually within a few hours. HIPAA &amp; 42 CFR Part 2 protected; your employer is never notified.</p>
+        <div class="info-row"><div class="info-icon">🔒</div><div><h4>100% Confidential</h4><p>Protected under HIPAA and 42 CFR Part 2. Employer, union, and HR are never notified.</p></div></div>
+        <div class="info-row"><div class="info-icon">⚡</div><div><h4>Results Same Day</h4><p>Most verifications finish within 2–4 hours during business hours.</p></div></div>
+        <div class="info-row"><div class="info-icon">📞</div><div><h4>Prefer to Call?</h4><p>24/7 admissions line: <a href="tel:${TEL}" style="color:var(--blue);font-weight:700;">${PHONE}</a></p></div></div>
+      </div>
+      <div class="form-card">
+        <h3>Verify My NYSHIP Benefits — Free</h3>
+        <form>
+          <div class="form-row">
+            <div class="form-group"><label>First Name *</label><input type="text" placeholder="Jane" required name="first_name"></div>
+            <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Smith" required name="last_name"></div>
+          </div>
+          <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="(555) 000-0000" required name="phone"></div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@example.com" name="email"></div>
+          <div class="form-group"><label>NYSHIP Plan Type</label><select name="nyship_plan"><option value="">— Select your plan (if known) —</option><option>Empire Plan</option><option>CDPHP</option><option>MVP Health Care</option><option>EmblemHealth / GHI</option><option>Excellus BlueCross BlueShield</option><option>HealthNow / BCBS WNY</option><option>Not sure</option></select></div>
+          <div class="form-group"><label>Primary Concern</label><select name="primary_concern"><option value="">— What are you seeking help for? —</option><option>Alcohol use</option><option>Cocaine or stimulants</option><option>Kratom dependency</option><option>Prescription painkillers</option><option>Other opioids</option><option>Benzodiazepines</option><option>Multiple substances</option><option>Mental health</option><option>Not sure</option></select></div>
+          <button type="submit" class="submit-btn">Submit — Verify My Benefits →</button>
+          <p class="form-disclaimer">🔒 HIPAA &amp; 42 CFR Part 2 compliant. Never sold or shared. Employer will not be contacted.</p>
+        </form>
+      </div>
+    </div>
   </div>
 </section>`;
+
+// Sticky Call / Verify / Text bar on every page. Desktop: floats bottom-LEFT so
+// it never collides with the bottom-right chat widget. Mobile: full-width but
+// leaves room on the right for the chat bubble.
+const stickyCta = `<style>
+#sl-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;display:flex;gap:8px;padding:8px 10px;background:#0a2540;box-shadow:0 -4px 22px rgba(0,0,0,.28)}
+#sl-sticky a{flex:1;text-align:center;color:#fff;padding:13px 6px;border-radius:9px;font-weight:800;text-decoration:none;font-size:15px;line-height:1.15;font-family:inherit}
+#sl-sticky .c{background:#1a9e5c}#sl-sticky .v{background:#d4a017}#sl-sticky .t{background:#2b7fd4}
+#sl-sticky a:hover{filter:brightness(1.07)}
+@media(max-width:899px){body{padding-bottom:74px}#sl-sticky{right:78px}}
+@media(min-width:900px){#sl-sticky{left:22px;right:auto;bottom:22px;max-width:520px;border-radius:15px;padding:9px}}
+</style>
+<div id="sl-sticky" role="navigation" aria-label="Contact actions">
+  <a class="c" href="tel:${TEL}" aria-label="Call now">📞 Call Now</a>
+  <a class="v" href="/nyship-coverage-verification" aria-label="Verify insurance">✅ Verify Insurance</a>
+  <a class="t" href="sms:${TEL}" aria-label="Text us">💬 Text Us</a>
+</div>`;
 
 function faqSection(faq) {
   if (!faq || !faq.length) return '';
@@ -424,6 +465,7 @@ ${innerHTML}
 </div>
 </div>
 ${footerHTML}
+${stickyCta}
 ${staticScript(currentId)}
 </body>
 </html>
