@@ -825,17 +825,17 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <h3>Verify My NYSHIP Benefits — Free</h3>
         <form novalidate="" name="benefits-verification" method="POST" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="benefits-verification"><p hidden=""><label>Leave this blank: <input name="bot-field"></label></p>
           <div class="form-row">
-            <div class="form-group"><label>First Name *</label><input type="text" placeholder="Jane" required="" name="jane"></div>
-            <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Smith" required="" name="smith"></div>
+            <div class="form-group"><label>First Name *</label><input type="text" placeholder="Jane" required="" name="first_name"></div>
+            <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Smith" required="" name="last_name"></div>
           </div>
-          <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="(555) 000-0000" required="" name="555-000-0000"></div>
-          <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@example.com" name="jane-example-com"></div>
+          <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="(555) 000-0000" required="" name="phone"></div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@example.com" name="email"></div>
           <div class="form-group"><label>NYSHIP Plan Type</label>
-            <select name="select-6"><option value="">— Select your plan (if known) —</option><option>Empire Plan</option><option>CDPHP</option><option>MVP Health Care</option><option>EmblemHealth / GHI</option><option>Excellus BlueCross BlueShield</option><option>HealthNow / BCBS WNY</option><option>Not sure</option></select></div>
+            <select name="nyship_plan"><option value="">— Select your plan (if known) —</option><option>Empire Plan</option><option>CDPHP</option><option>MVP Health Care</option><option>EmblemHealth / GHI</option><option>Excellus BlueCross BlueShield</option><option>HealthNow / BCBS WNY</option><option>Not sure</option></select></div>
           <div class="form-group"><label>Your Employer Type</label>
-            <select name="select-7"><option value="">— Select (optional) —</option><option>NYS State Agency</option><option>SUNY or CUNY</option><option>Public School District</option><option>County Government</option><option>City or Town Government</option><option>Fire or EMS Department</option><option>DOCCS / Corrections</option><option>Public Library</option><option>Retiree</option><option>Other / Not sure</option></select></div>
+            <select name="employer_type"><option value="">— Select (optional) —</option><option>NYS State Agency</option><option>SUNY or CUNY</option><option>Public School District</option><option>County Government</option><option>City or Town Government</option><option>Fire or EMS Department</option><option>DOCCS / Corrections</option><option>Public Library</option><option>Retiree</option><option>Other / Not sure</option></select></div>
           <div class="form-group"><label>Primary Concern</label>
-            <select name="select-8"><option value="">— What are you seeking help for? —</option><option>Alcohol use / drinking too much</option><option>Cocaine or stimulant use</option><option>Kratom dependency</option><option>Prescription painkillers (Percocet, Vicodin, OxyContin)</option><option>Other opioids</option><option>Benzodiazepines (Xanax, Klonopin)</option><option>Multiple substances</option><option>Mental health (anxiety, depression, PTSD)</option><option>Not sure / prefer to speak with someone</option></select></div>
+            <select name="primary_concern"><option value="">— What are you seeking help for? —</option><option>Alcohol use / drinking too much</option><option>Cocaine or stimulant use</option><option>Kratom dependency</option><option>Prescription painkillers (Percocet, Vicodin, OxyContin)</option><option>Other opioids</option><option>Benzodiazepines (Xanax, Klonopin)</option><option>Multiple substances</option><option>Mental health (anxiety, depression, PTSD)</option><option>Not sure / prefer to speak with someone</option></select></div>
           <button type="submit" class="submit-btn">Submit — Verify My Benefits →</button>
           <p class="form-disclaimer">🔒 HIPAA &amp; 42 CFR Part 2 compliant. Never sold or shared. Employer will not be contacted.</p>
         </form>
@@ -954,8 +954,8 @@ s0.parentNode.insertBefore(s1,s0);
 #sl-sticky a{flex:1;text-align:center;color:#fff;padding:13px 6px;border-radius:9px;font-weight:800;text-decoration:none;font-size:15px;line-height:1.15;font-family:inherit}
 #sl-sticky .c{background:#1a9e5c}#sl-sticky .v{background:#d4a017}#sl-sticky .t{background:#2b7fd4}
 #sl-sticky a:hover{filter:brightness(1.07)}
-@media(max-width:899px){body{padding-bottom:74px}}
-@media(min-width:900px){#sl-sticky{left:auto;right:22px;bottom:22px;max-width:540px;border-radius:15px;padding:9px}}
+@media(max-width:899px){body{padding-bottom:74px}#sl-sticky{right:78px}}
+@media(min-width:900px){#sl-sticky{left:22px;right:auto;bottom:22px;max-width:520px;border-radius:15px;padding:9px}}
 </style>
 <div id="sl-sticky" role="navigation" aria-label="Contact actions">
   <a class="c" href="tel:2133216518" aria-label="Call now">📞 Call Now</a>
