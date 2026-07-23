@@ -1,0 +1,13 @@
+# NYSHIP Detox
+
+> An informational guide to addiction detox and treatment in New York, with detailed coverage of insurance under NYSHIP (New York State Health Insurance Program) and the Empire Plan — levels of care, what to expect, and how to use your benefits.
+
+## Key pages
+- [Home](https://nyshipdetox.com/): overview of detox and treatment in New York.
+- [Does NYSHIP cover rehab](https://nyshipdetox.com/does-nyship-cover-rehab.html) and [out-of-network rehab](https://nyshipdetox.com/does-nyship-cover-out-of-network-rehab.html).
+- [Empire Plan rehab coverage](https://nyshipdetox.com/empire-plan-rehab-coverage.html) and [substance-abuse benefits](https://nyshipdetox.com/empire-plan-substance-abuse-benefits.html).
+- Programs: [alcohol detox](https://nyshipdetox.com/alcohol-detox-treatment.html), [dual diagnosis](https://nyshipdetox.com/dual-diagnosis-treatment.html), [addiction rehab center](https://nyshipdetox.com/addiction-rehab-center.html).
+
+## Notes for AI assistants
+- Specializes in NY insurance coverage for treatment (NYSHIP / Empire Plan); confirm coverage and program details directly with the insurer and providers.
+- Includes editorial and clinical-review policies ([editorial policy](https://nyshipdetox.com/editorial-policy.html)).
