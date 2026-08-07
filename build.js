@@ -89,8 +89,8 @@ const PAGES = [
   { id: 'p-excellus', slug: 'does-excellus-cover-rehab', title: 'Does Excellus BlueCross BlueShield Cover Rehab? NYSHIP Coverage',
     desc: 'Excellus BCBS NYSHIP HMO addiction treatment coverage for Western & Central NY State employees — detox and rehab explained. Free verification. Call ' + PHONE + '.' },
 
-  { id: 'p-state', slug: 'nys-agency-employee-rehab', title: 'Addiction Treatment for NY State Agency Employees | Empire Plan Covered',
-    desc: 'Confidential, Empire Plan–covered addiction treatment for NY State agency employees. Job-protected under FMLA. Free, private benefits verification. Call ' + PHONE + '.' },
+  { id: 'p-state', slug: 'nys-agency-employee-rehab', title: 'NYSHIP & Empire Plan Rehab for NY State Agency Employees — Confidential',
+    desc: 'Confidential NYSHIP & Empire Plan–covered addiction treatment for NY State agency employees — detox, rehab, PHP & IOP. Job-protected under FMLA. Free, private benefits check. Call ' + PHONE + '.' },
   { id: 'p-schools', slug: 'teacher-school-employee-rehab', title: 'Addiction Treatment for NY Teachers & School Staff | NYSHIP Covered',
     desc: 'Confidential NYSHIP-covered addiction treatment for NY public school teachers and staff. Job-protected, private benefits verification. Call ' + PHONE + '.' },
   { id: 'p-suny', slug: 'suny-cuny-employee-rehab', title: 'Addiction Treatment for SUNY & CUNY Employees | NYSHIP Empire Plan',
@@ -176,6 +176,17 @@ const REVIEWER_LD = '<script type="application/ld+json">\n' + JSON.stringify({
   identifier: { '@type': 'PropertyValue', propertyID: 'NPI', value: '1902955859' },
   worksFor: { '@id': ORIGIN + '/#organization' }
 }, null, 2) + '\n</script>';
+
+// Visible E-E-A-T byline — the single biggest lever for getting YMYL addiction
+// pages indexed. Surfaces the medical reviewer + a fresh "last updated" date on
+// every content page (rebuilt weekly, so the date stays current).
+const UPDATED = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+const REVIEW_BYLINE = `<div class="review-byline" style="font-size:.85rem;color:#4a5b6b;margin:.3rem 0 1.5rem;padding:.7rem 1rem;background:#f1f6fb;border-left:3px solid #1a5fa8;border-radius:6px;line-height:1.5">🩺 Medically reviewed by <a href="/medical-director" style="color:#1a5fa8;font-weight:600">Bradley Tourtlotte, MD</a>, Medical Director · Last updated ${UPDATED} · <a href="/editorial-policy" style="color:#1a5fa8">Editorial policy</a></div>`;
+function injectByline(html) {
+  if (/review-byline/.test(html)) return html;               // never double-inject
+  if (/<\/h1>/.test(html)) return html.replace('</h1>', '</h1>\n' + REVIEW_BYLINE);
+  return REVIEW_BYLINE + html;
+}
 
 /* Extract FAQ pairs from a cheerio page node (.faq-item > .faq-q/.faq-a) */
 function extractFaq(node) {
@@ -461,7 +472,7 @@ ${navHTML}
 ${mobileMenu}
 <div id="spa-container">
 <div class="spa-page" id="${currentId}" style="display:block">
-${innerHTML}
+${currentId === 'p-home' ? innerHTML : injectByline(innerHTML)}
 </div>
 </div>
 ${footerHTML}
