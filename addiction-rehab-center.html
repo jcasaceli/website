@@ -150,6 +150,16 @@ h3 { font-size: 1.12rem; font-weight: 700; }
 .trust-bar { background: var(--sky); border-top: 3px solid var(--gold); border-bottom: 1px solid var(--border); padding: 1.1rem 5%; display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
 .trust-item { display: flex; align-items: center; gap: .5rem; font-size: .85rem; font-weight: 600; color: var(--navy); }
 
+/* ── FACILITY TOUR ── */
+.ny-tour { background: var(--gray); padding: 60px 0; }
+.tour-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.6rem; }
+.tour-fig { margin: 0; }
+.tour-fig img { width: 100%; height: 210px; object-fit: cover; border-radius: 14px; display: block; box-shadow: 0 10px 26px rgba(15, 45, 74, .12); }
+.tour-fig figcaption { font-size: .82rem; font-weight: 600; color: var(--muted); margin-top: .55rem; }
+.tour-note { font-size: .85rem; color: var(--muted); margin-top: 1.4rem; }
+@media (max-width: 900px) { .tour-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .tour-grid { grid-template-columns: 1fr; } .tour-fig img { height: 200px; } }
+
 /* ── CARDS ── */
 .card-grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 28px; }
 .card-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
@@ -583,7 +593,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
 
@@ -625,6 +635,36 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
   <div class="trust-item">⏱️ Same-Day Admissions Available</div>
   <div class="trust-item">📞 24/7 Admissions Line</div>
 </div>
+
+<!-- ════════════════
+     FACILITY TOUR
+════════════════ -->
+<section class="ny-tour" id="tour-section" aria-labelledby="tour-heading">
+  <div class="container">
+    <div class="section-label">Inside Our New York Location</div>
+    <h2 id="tour-heading">A Calm, Private Place to Focus on Recovery</h2>
+    <p class="section-sub" style="margin-bottom:0;">Comfortable, residential surroundings — not a clinical ward. Space to rest, eat well, and do the work of early recovery with clinical staff on site.</p>
+    <div class="tour-grid">
+      <figure class="tour-fig">
+        <img src="/assets/photos/ny-bedroom.jpg" width="1000" height="554" alt="Private bedroom at our New York treatment location" loading="eager" decoding="async">
+        <figcaption>Resident rooms</figcaption>
+      </figure>
+      <figure class="tour-fig">
+        <img src="/assets/photos/ny-kitchen.jpg" width="1000" height="667" alt="Dining and kitchen area at our New York treatment location" loading="eager" decoding="async">
+        <figcaption>Dining &amp; kitchen</figcaption>
+      </figure>
+      <figure class="tour-fig">
+        <img src="/assets/photos/ny-gameroom.jpg" width="1000" height="667" alt="Recreation room at our New York treatment location" loading="lazy" decoding="async">
+        <figcaption>Recreation room</figcaption>
+      </figure>
+      <figure class="tour-fig">
+        <img src="/assets/photos/ny-meditation.jpg" width="686" height="386" alt="Meditation and quiet room at our New York treatment location" loading="lazy" decoding="async">
+        <figcaption>Meditation room</figcaption>
+      </figure>
+    </div>
+    <p class="tour-note">Photographs of our New York location. Room assignment and amenities vary by availability and level of care.</p>
+  </div>
+</section>
 
 <!-- ══════════════════════════════════
      NYSHIP EXPLAINER
@@ -3943,7 +3983,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4107,7 +4147,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4252,7 +4292,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4405,7 +4445,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4553,7 +4593,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4819,7 +4859,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4954,7 +4994,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5088,7 +5128,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5253,7 +5293,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5401,7 +5441,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5538,7 +5578,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5675,7 +5715,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5811,7 +5851,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5947,7 +5987,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6096,7 +6136,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6246,7 +6286,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6385,7 +6425,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6524,7 +6564,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6661,7 +6701,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6812,7 +6852,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>✓ Free &amp; no obligation</li>
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
-        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">real clinical team</a></li>
+        <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
       </ul>
     </div>
     <div class="hero-card">
