@@ -77,7 +77,7 @@ async function main() {
 Return ONLY a single JSON object (no markdown, no commentary) with these exact keys:
 {
   "title": "SEO title, <= 60 chars, specific and clickable",
-  "desc": "meta description ~150 chars, ends with: Call 213-321-6518.",
+  "desc": "meta description ~150 chars, ends with: Call 631-800-4691.",
   "h1": "the on-page H1 headline",
   "bodyHtml": "the full article as clean HTML using <p>, <h2>, <h3>, <ul><li>. 800-1300 words.",
   "sources": [ {"name":"Source name","url":"real authoritative URL"}, ... 4-5 items ],
@@ -88,7 +88,7 @@ REQUIREMENTS (critical):
 - HONEST & ACCURATE: This is health content. State only facts you are confident are true. Do NOT invent statistics, laws, or specifics. Frame coverage as general ("NYSHIP plans generally cover…", "depends on your specific plan"). Include a short sentence noting the article is educational, not medical/insurance/legal advice.
 - CITE authoritative sources with REAL URLs only: SAMHSA, NIDA, CDC, NIH, NY State Dept. of Civil Service, ASAM, or similar. Every source URL must be one you are confident exists. Reference them inline in bodyHtml as <a href="URL" target="_blank" rel="noopener">Name</a>.
 - INTERNAL LINKS: naturally link 2-4 of these existing pages in bodyHtml (use the exact hrefs): /does-nyship-cover-rehab, /empire-plan-rehab-coverage, /nyship-coverage-verification, /alcohol-detox-treatment, /medication-assisted-treatment, /nyship-outpatient-treatment, /dual-diagnosis-treatment, /levels-of-addiction-care.
-- Include the phone number 213-321-6518 once, naturally, as a way to verify benefits or get help.
+- Include the phone number 631-800-4691 once, naturally, as a way to verify benefits or get help.
 - Mention the 988 Suicide & Crisis Lifeline and SAMHSA National Helpline (1-800-662-4357) near the end for anyone in crisis.
 - Tone: warm, clear, professional, non-judgmental. No fabricated testimonials or first-person clinical claims.`;
 

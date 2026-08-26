@@ -12,7 +12,7 @@
    real people, then move them into the array below to publish.
    =================================================================== */
 
-const PHONE = '213-321-6518';
+const PHONE = '631-800-4691';
 
 /* Reusable conversion CTA (matches site styling; nav CTA lands here) */
 const ctaBlock = `
@@ -21,7 +21,7 @@ const ctaBlock = `
     <div class="section-label">Free &amp; Confidential</div>
     <h2>Verify Your NYSHIP Benefits — No Cost, No Obligation</h2>
     <p class="section-sub" style="margin:0 auto 2rem">We confirm your exact NYSHIP / Empire Plan coverage and report back, usually within a few hours. HIPAA &amp; 42 CFR Part 2 protected.</p>
-    <a href="tel:2133216518" class="btn-primary">Call ${PHONE}</a>
+    <a href="tel:6318004691" class="btn-primary">Call ${PHONE}</a>
   </div>
 </section>`;
 
@@ -56,7 +56,7 @@ module.exports = [
     <p>The information here is for general education. It is <strong>not medical advice</strong> and is not a substitute for a professional clinical assessment, diagnosis or treatment. It is also not a guarantee of insurance coverage — your specific benefits depend on your exact plan. The only way to confirm your coverage is a benefits verification, which we provide at no cost.</p>
 
     <h2>Corrections</h2>
-    <p>If you believe anything on this site is inaccurate or out of date, please tell us so we can review and correct it. Call <a href="tel:2133216518">${PHONE}</a> or email <a href="mailto:support@alumniaidservices.com">support@alumniaidservices.com</a>.</p>
+    <p>If you believe anything on this site is inaccurate or out of date, please tell us so we can review and correct it. Call <a href="tel:6318004691">${PHONE}</a> or email <a href="mailto:support@alumniaidservices.com">support@alumniaidservices.com</a>.</p>
 
     <p style="color:var(--muted);font-size:.92rem;margin-top:2rem">Last reviewed: June 2026.</p>
   </div>

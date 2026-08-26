@@ -18,8 +18,8 @@ const path = require('path');
 const cheerio = require('cheerio');
 
 const ORIGIN = 'https://nyshipdetox.com';
-const PHONE = '213-321-6518';
-const TEL = '2133216518';
+const PHONE = '631-800-4691';
+const TEL = '6318004691';
 const SOURCE = path.join(__dirname, 'addiction-rehab-center.html');
 const OUT = __dirname;
 
