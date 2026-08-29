@@ -25,8 +25,8 @@ const OUT = __dirname;
 
 /* ---- Per-page SEO metadata for the SPA split -------------------- */
 const PAGES = [
-  { id: 'p-home', slug: '', title: 'NYSHIP & Empire Plan Drug Rehab | Alcohol & Drug Detox NY | Addiction Rehab Center',
-    desc: 'NY State employees: your NYSHIP / Empire Plan covers alcohol detox, cocaine, kratom, opioid and painkiller addiction treatment across New York. Free, confidential benefits check — call ' + PHONE + '.' },
+  { id: 'p-home', slug: '', title: 'NYSHIP & Empire Plan Rehab in NY | Alcohol & Drug Detox',
+    desc: 'NY State employees: your NYSHIP / Empire Plan may cover detox and rehab in full. Free, confidential benefits check in minutes — call ' + PHONE + '.' },
 
   { id: 'p-albany', slug: 'nyship-rehab-albany', title: 'NYSHIP Rehab in Albany, NY | Empire Plan Detox & Addiction Treatment',
     desc: 'NYSHIP & Empire Plan addiction treatment for Albany & Capital Region state employees — alcohol detox, opioid, cocaine & dual-diagnosis care. Confidential. Call ' + PHONE + '.' },
@@ -46,7 +46,7 @@ const PAGES = [
     desc: 'NYSHIP-covered detox and addiction treatment for Troy and Rensselaer County public employees. Confidential, job-protected care. Free benefits check — ' + PHONE + '.' },
   { id: 'p-utica', slug: 'nyship-rehab-utica', title: 'NYSHIP Rehab in Utica, NY | Oneida County Empire Plan Treatment',
     desc: 'NYSHIP & Empire Plan addiction treatment for Utica and Oneida County government employees. Alcohol, opioid and cocaine detox & rehab. Call ' + PHONE + '.' },
-  { id: 'p-newburgh', slug: 'nyship-rehab-newburgh', title: 'NYSHIP Rehab in Newburgh, NY | Orange County Empire Plan Treatment',
+  { id: 'p-newburgh', slug: 'nyship-rehab-newburgh', title: 'NYSHIP Rehab in Newburgh, NY | Empire Plan Detox & Treatment',
     desc: 'NYSHIP-covered detox and rehab for Newburgh and Orange County employees. Confidential alcohol, opioid and dual-diagnosis treatment. Verify free — ' + PHONE + '.' },
   { id: 'p-saratoga', slug: 'nyship-rehab-saratoga-springs', title: 'NYSHIP Rehab in Saratoga Springs, NY | Empire Plan Addiction Treatment',
     desc: 'NYSHIP & Empire Plan addiction treatment for Saratoga County state employees. Confidential detox, rehab and dual-diagnosis care. Free benefits check — ' + PHONE + '.' },
@@ -607,6 +607,31 @@ EEAT.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.5' }));
 if (BLOG.length) urls.push({ loc: ORIGIN + '/blog/', pr: '0.7' });
 BLOG.forEach(p => urls.push({ loc: ORIGIN + '/blog/' + p.slug, pr: '0.6' }));
 urls.push({ loc: ORIGIN + '/' + SITEMAP_PAGE.slug, pr: '0.3' });
+
+/* Hand-authored pages that live outside the generator arrays above.
+   They are linked in the nav but build.js does not emit them, so without this
+   sweep every rebuild silently dropped them from sitemap.xml. Auto-discovering
+   keeps future standalone pages indexed instead of relying on a manual list. */
+const SITEMAP_EXCLUDE = new Set([
+  'index',                       // emitted above as "/"
+  'addiction-rehab-center',      // legacy SPA source, 301s to "/"
+]);
+const known = new Set(urls.map(u => u.loc));
+fs.readdirSync(OUT)
+  .filter(f => f.endsWith('.html'))
+  .map(f => f.replace(/\.html$/, ''))
+  .filter(slug => !SITEMAP_EXCLUDE.has(slug) && !slug.startsWith('google-site-verification'))
+  .sort()
+  .forEach(slug => {
+    const loc = ORIGIN + '/' + slug;
+    if (!known.has(loc)) { known.add(loc); urls.push({ loc, pr: '0.7' }); }
+  });
+/* nyship-rehab-albany is defined in both PAGES and content/cities.json, so it
+   would otherwise emit twice. Keep the first (highest-priority) entry per URL. */
+const seenLoc = new Set();
+const dedupedUrls = urls.filter(u => !seenLoc.has(u.loc) && seenLoc.add(u.loc));
+urls.length = 0; urls.push(...dedupedUrls);
+
 const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   urls.map(u => `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${u.pr}</priority>\n  </url>`).join('\n') +
   '\n</urlset>\n';
