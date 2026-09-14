@@ -624,7 +624,27 @@ if (BLOG.length) {
 }
 
 /* ---- sitemap.xml ------------------------------------------------- */
-const today = process.env.BUILD_DATE || '2026-06-03';
+const today = process.env.BUILD_DATE || new Date().toISOString().slice(0, 10);
+/* Per-URL <lastmod>: the date the page's HTML last changed in git (falls back to
+   today for brand-new, uncommitted pages). A single hard-coded date for every URL
+   (previously 2026-06-03) tells Google nothing changed, so new/updated pages are
+   recrawled slowly; bumping every URL on every build is ignored as noise. */
+const { execSync } = require('child_process');
+function lastmodFor(loc) {
+  let rel = loc.replace(ORIGIN, '').replace(/^\//, '');
+  if (rel === '' ) rel = 'index.html';
+  else if (rel.endsWith('/')) rel += 'index.html';
+  else rel += '.html';
+  try {
+    const d = execSync(`git log -1 --format=%cs -- "${rel}"`, { cwd: OUT, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(d)) {
+      // Uncommitted edits to a tracked file → the change is newer than the last commit.
+      const dirty = execSync(`git status --porcelain -- "${rel}"`, { cwd: OUT, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+      return dirty ? today : d;
+    }
+  } catch (e) { /* not in git yet */ }
+  return today;
+}
 const urls = [];
 PAGES.forEach(p => urls.push({ loc: p.slug === '' ? ORIGIN + '/' : ORIGIN + '/' + p.slug, pr: p.slug === '' ? '1.0' : '0.8' }));
 COVERAGE.forEach(p => urls.push({ loc: ORIGIN + '/' + p.slug, pr: '0.8' }));
@@ -661,7 +681,7 @@ const dedupedUrls = urls.filter(u => !seenLoc.has(u.loc) && seenLoc.add(u.loc));
 urls.length = 0; urls.push(...dedupedUrls);
 
 const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-  urls.map(u => `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${u.pr}</priority>\n  </url>`).join('\n') +
+  urls.map(u => `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${lastmodFor(u.loc)}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${u.pr}</priority>\n  </url>`).join('\n') +
   '\n</urlset>\n';
 fs.writeFileSync(path.join(OUT, 'sitemap.xml'), sitemap);
 
