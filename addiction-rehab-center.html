@@ -25,11 +25,7 @@
   "@type": "MedicalBusiness",
   "name": "Addiction Rehab Center",
   "url": "https://nyshipdetox.com/",
-  "logo": "https://nyshipdetox.com/logo.png",
-  "sameAs": [
-    "https://www.facebook.com/your",
-    "https://www.instagram.com/your"
-  ],
+  "logo": "https://nyshipdetox.com/favicon-256.png",
   "contactPoint": [{
     "@type": "ContactPoint",
     "telephone": "+16318004691",
@@ -377,7 +373,13 @@ html, body { overflow-x: hidden; }
 }
 
 /* ── Dropdown: can't bleed off screen ── */
-.dropdown.wide { left: auto; right: 0; min-width: min(700px, 95vw); }
+/* Wide (mega) menus anchor to the whole nav bar, not the hovered item, so the
+   left column can't run off-screen on narrow desktops. Small dropdowns keep
+   anchoring to their own <li>. */
+.nav-menu { position: relative; }
+.nav-menu > li:has(> .dropdown.wide) { position: static; }
+@media (max-width: 1320px) { .nav-menu > li > a, .nav-menu > li > span { padding: .5rem .55rem; font-size: .82rem; } }
+.dropdown.wide { left: 0; right: 0; min-width: 0; width: 100%; max-width: 100%; }
 @media (max-width: 900px) {
   .nav-menu .dropdown,
   .nav-menu .dropdown.wide { display: none !important; }
@@ -594,6 +596,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
 
@@ -921,9 +924,24 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
   <div class="container">
     <div class="section-label">Areas We Serve</div>
     <h2 id="areas-heading">NYSHIP Addiction Treatment Serving All of New York</h2>
-    <p class="section-sub">We serve NY State and local government employees throughout New York, with a focus on communities where NYSHIP coverage is most concentrated — outside the NYC metro, where real people can get real help without the big-city wait times.</p>
+    <p class="section-sub">We serve New York State and local government employees across the whole state: Long Island, New York City, the Hudson Valley, the Capital Region, and Western and Central New York. Every page below explains who in that area has NYSHIP and how to use it.</p>
 
     <div class="cities-grid">
+      <div class="city-card">
+        <div class="ci">🏝️</div>
+        <h4><a href="/nyship-rehab-long-island" style="color:var(--navy);">Long Island, NY</a></h4>
+        <p>Nassau &amp; Suffolk: Stony Brook, Farmingdale State, Pilgrim Psychiatric Center, and local governments in NYSHIP. <a href="/nyship-alcohol-rehab-long-island">Alcohol rehab</a> · <a href="/nyship-drug-rehab-long-island">Drug rehab</a></p>
+      </div>
+      <div class="city-card">
+        <div class="ci">🗽</div>
+        <h4><a href="/nyship-rehab-new-york-city" style="color:var(--navy);">New York City</a></h4>
+        <p>State agency offices, the court system, SUNY &amp; CUNY staff across the five boroughs</p>
+      </div>
+      <div class="city-card">
+        <div class="ci">🍂</div>
+        <h4><a href="/nyship-rehab-orange-county" style="color:var(--navy);">Orange County, NY</a></h4>
+        <p>Hudson Valley state employees, Orange County local governments and school districts</p>
+      </div>
       <div class="city-card">
         <div class="ci">🏛️</div>
         <h4><a href="#" onclick="goTo('p-albany');return false;" style="color:var(--navy);">Albany, NY</a></h4>
@@ -3984,6 +4002,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4148,6 +4167,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4293,6 +4313,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4446,6 +4467,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4594,6 +4616,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4860,6 +4883,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -4995,6 +5019,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5129,6 +5154,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5294,6 +5320,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5442,6 +5469,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5579,6 +5607,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5716,6 +5745,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5852,6 +5882,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -5988,6 +6019,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6137,6 +6169,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6287,6 +6320,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6426,6 +6460,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6565,6 +6600,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6702,6 +6738,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -6853,6 +6890,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <li>🔒 100% confidential — employer never notified</li>
         <li>🛡️ HIPAA &amp; 42 CFR Part 2 protected</li>
         <li>🩺 <a href="/medical-director">Medically reviewed</a> · <a href="/clinical-team">Licensed clinical team</a></li>
+      <li>📍 <a href="/nyship-alcohol-rehab">NYSHIP alcohol rehab</a> · <a href="/nyship-drug-rehab">drug rehab</a> · <a href="/nyship-detox-coverage">detox</a> · <a href="/nyship-outpatient-treatment">outpatient</a> · <a href="/nyship-rehab-long-island">Long Island</a></li>
       </ul>
     </div>
     <div class="hero-card">
@@ -7006,8 +7044,14 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
       <li><a href="#" onclick="goTo('p-mvp');return false;">MVP Health Care</a></li>
       <li><a href="#" onclick="goTo('p-emblem');return false;">EmblemHealth</a></li>
       <li><a href="#" onclick="goTo('p-excellus');return false;">Excellus BCBS</a></li>
+      <li><a href="/does-ghi-cover-rehab">GHI / EmblemHealth</a></li>
+      <li><a href="/nyship-depression-coverage">Depression Coverage</a></li>
+      <li><a href="/nyship-adhd-coverage">ADHD Coverage</a></li>
     </ul></div>
     <div><h4>Locations</h4><ul>
+      <li><a href="/nyship-rehab-long-island">Long Island</a></li>
+      <li><a href="/nyship-rehab-new-york-city">New York City</a></li>
+      <li><a href="/nyship-rehab-orange-county">Orange County</a></li>
       <li><a href="#" onclick="goTo('p-albany');return false;">Albany</a></li>
       <li><a href="#" onclick="goTo('p-buffalo');return false;">Buffalo</a></li>
       <li><a href="#" onclick="goTo('p-syracuse');return false;">Syracuse</a></li>
@@ -7019,7 +7063,7 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
   </div>
   <div class="footer-bottom">
     <span>&#169; 2026 Addiction Rehab Center. All rights reserved. Licensed by NYS OASAS. Joint Commission Accredited.</span>
-    <span class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">HIPAA Notice</a></span>
+    <span class="footer-links"><a href="/editorial-policy">Editorial Policy</a><a href="/medical-director">Medical Director</a><a href="/references">References</a></span>
   </div>
 </footer>
 

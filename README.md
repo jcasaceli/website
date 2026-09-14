@@ -18,7 +18,7 @@ npm install      # first time only — installs cheerio
 node build.js    # regenerates all pages + sitemap
 ```
 
-Commit the regenerated `*.html` files. Netlify serves them as static files (no build step required on Netlify). Page titles/descriptions/slugs live in the `PAGES` array in `build.js`.
+Then run `python3 sync-standalone-chrome.py` — it copies the freshly generated nav, mobile menu, footer, organization schema and sticky call bar into the 16 hand-authored pages that `build.js` does not emit (they otherwise drift; see the explicit list inside the script). Commit the regenerated `*.html` files. Netlify serves them as static files (no build step required on Netlify). Page titles/descriptions/slugs live in the `PAGES` array in `build.js`.
 
 To publish the Medical Director / Clinical Team pages: fill the real staff details in `eeat-templates.js`, move those objects into `eeat-content.js`, and re-run `node build.js`.
 

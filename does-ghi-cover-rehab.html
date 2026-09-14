@@ -4,8 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="google-site-verification" content="qZbu_Qsif1jDyAgSy0oFs1TDKkePCp5eoQiOBupLWXs" />
-<title>Does GHI Cover Rehab? | EmblemHealth / GHI Addiction Treatment</title>
-<meta name="description" content="Does GHI cover rehab and detox? Learn how EmblemHealth / GHI and NYSHIP GHI plans typically cover addiction treatment for New York employees. Free, confidential coverage check — call 631-800-4691."/>
+<title>Does GHI Cover Rehab? EmblemHealth / GHI Addiction Treatment</title>
+<meta name="description" content="Does GHI cover rehab and detox? How EmblemHealth / GHI and NYSHIP GHI plans typically cover addiction treatment for NY employees. Call 631-800-4691."/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://nyshipdetox.com/does-ghi-cover-rehab"/>
 <link rel="icon" href="/favicon.ico" sizes="32x32"/>
@@ -15,17 +15,17 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://nyshipdetox.com/does-ghi-cover-rehab"/>
-<meta property="og:title" content="Does GHI Cover Rehab? | EmblemHealth / GHI Addiction Treatment"/>
-<meta property="og:description" content="Does GHI cover rehab and detox? Learn how EmblemHealth / GHI and NYSHIP GHI plans typically cover addiction treatment for New York employees. Free, confidential coverage check — call 631-800-4691."/>
+<meta property="og:title" content="Does GHI Cover Rehab? EmblemHealth / GHI Addiction Treatment"/>
+<meta property="og:description" content="Does GHI cover rehab and detox? How EmblemHealth / GHI and NYSHIP GHI plans typically cover addiction treatment for NY employees. Call 631-800-4691."/>
 <meta property="og:site_name" content="Addiction Rehab Center"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:image" content="https://nyshipdetox.com/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="Does GHI Cover Rehab? | EmblemHealth / GHI Addiction Treatment"/>
+<meta property="og:image:alt" content="Does GHI Cover Rehab? EmblemHealth / GHI Addiction Treatment"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Does GHI Cover Rehab? | EmblemHealth / GHI Addiction Treatment"/>
-<meta name="twitter:description" content="Does GHI cover rehab and detox? Learn how EmblemHealth / GHI and NYSHIP GHI plans typically cover addiction treatment for New York employees. Free, confidential coverage check — call 631-800-4691."/>
+<meta name="twitter:title" content="Does GHI Cover Rehab? EmblemHealth / GHI Addiction Treatment"/>
+<meta name="twitter:description" content="Does GHI cover rehab and detox? How EmblemHealth / GHI and NYSHIP GHI plans typically cover addiction treatment for NY employees. Call 631-800-4691."/>
 <meta name="twitter:image" content="https://nyshipdetox.com/og-image.png"/>
 <script type="application/ld+json">
 {
@@ -38,19 +38,39 @@
   "name": "Addiction Rehab Center",
   "url": "https://nyshipdetox.com/",
   "telephone": "+16318004691",
-  "medicalSpecialty": "Addiction Medicine",
+  "medicalSpecialty": "https://schema.org/Psychiatric",
+  "logo": "https://nyshipdetox.com/favicon-256.png",
+  "image": "https://nyshipdetox.com/og-image.png",
   "description": "NYSHIP and Empire Plan addiction treatment — detox, rehab and outpatient care for New York State and government employees.",
   "areaServed": {
     "@type": "State",
     "name": "New York"
   },
   "availableService": [
-    {"@type": "MedicalProcedure", "name": "Medical Detox"},
-    {"@type": "MedicalProcedure", "name": "Residential Treatment"},
-    {"@type": "MedicalProcedure", "name": "Partial Hospitalization"},
-    {"@type": "MedicalProcedure", "name": "Intensive Outpatient"},
-    {"@type": "MedicalProcedure", "name": "Medication-Assisted Treatment"},
-    {"@type": "MedicalProcedure", "name": "Dual Diagnosis Treatment"}
+    {
+      "@type": "MedicalProcedure",
+      "name": "Medical Detox"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Residential Treatment"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Partial Hospitalization"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Intensive Outpatient"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Medication-Assisted Treatment"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Dual Diagnosis Treatment"
+    }
   ],
   "contactPoint": [
     {
@@ -67,8 +87,8 @@
 {
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
-  "name": "Does GHI Cover Rehab? | EmblemHealth / GHI Addiction Treatment",
-  "description": "Does GHI cover rehab and detox? Learn how EmblemHealth / GHI and NYSHIP GHI plans typically cover addiction treatment for New York employees. Free, confidential coverage check — call 631-800-4691.",
+  "name": "Does GHI Cover Rehab? EmblemHealth / GHI Addiction Treatment",
+  "description": "Does GHI cover rehab and detox? How EmblemHealth / GHI and NYSHIP GHI plans typically cover addiction treatment for NY employees. Call 631-800-4691.",
   "url": "https://nyshipdetox.com/does-ghi-cover-rehab",
   "inLanguage": "en-US",
   "isPartOf": {
@@ -491,7 +511,13 @@ html, body { overflow-x: hidden; }
 }
 
 /* ── Dropdown: can't bleed off screen ── */
-.dropdown.wide { left: auto; right: 0; min-width: min(700px, 95vw); }
+/* Wide (mega) menus anchor to the whole nav bar, not the hovered item, so the
+   left column can't run off-screen on narrow desktops. Small dropdowns keep
+   anchoring to their own <li>. */
+.nav-menu { position: relative; }
+.nav-menu > li:has(> .dropdown.wide) { position: static; }
+@media (max-width: 1320px) { .nav-menu > li > a, .nav-menu > li > span { padding: .5rem .55rem; font-size: .82rem; } }
+.dropdown.wide { left: 0; right: 0; min-width: 0; width: 100%; max-width: 100%; }
 @media (max-width: 900px) {
   .nav-menu .dropdown,
   .nav-menu .dropdown.wide { display: none !important; }
@@ -547,10 +573,10 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
         <div class="dropdown wide">
           <div class="dropdown-col">
             <div class="dropdown-col-title">Level of Care</div>
-            <a href="/">Medical Detox</a>
-            <a href="/">Residential Treatment</a>
-            <a href="/">PHP Programs</a>
-            <a href="/">IOP Programs</a>
+            <a href="/nyship-detox-coverage">Medical Detox</a>
+            <a href="/nyship-residential-treatment">Residential Treatment</a>
+            <a href="/nyship-outpatient-treatment">PHP Programs</a>
+            <a href="/nyship-outpatient-treatment">IOP Programs</a>
             <a href="/medication-assisted-treatment">Medication-Assisted Treatment</a>
           </div>
           <div class="dropdown-col">
@@ -565,11 +591,11 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
           </div>
           <div class="dropdown-col">
             <div class="dropdown-col-title">Therapies</div>
-            <a href="/">Individual Therapy</a>
-            <a href="/">Group Therapy</a>
-            <a href="/">Family Therapy</a>
-            <a href="/">CBT &amp; DBT</a>
-            <a href="/">EMDR Trauma Therapy</a>
+            <a href="/nyship-mental-health-coverage">Individual Therapy</a>
+            <a href="/nyship-mental-health-coverage">Group Therapy</a>
+            <a href="/family-guide-loved-one-addiction-ny">Family Therapy</a>
+            <a href="/nyship-mental-health-coverage">CBT &amp; DBT</a>
+            <a href="/dual-diagnosis-treatment">EMDR Trauma Therapy</a>
           </div>
         </div>
       </li><li>
@@ -581,16 +607,22 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
       <a href="/nyship-outpatient-treatment">Outpatient (PHP/IOP)</a>
       <a href="/nyship-coverage-verification">Coverage Verification</a>
       <a href="/nyship-mental-health-coverage">Mental Health Coverage</a>
-      <a href="/nyship-alcohol-rehab">Alcohol Rehab</a>
-      <a href="/nyship-drug-rehab">Drug Rehab</a>
+      <a href="/empire-plan-vs-hmo">Empire Plan vs HMO</a>
+  </div>
+</li><li>
+  <span>Alcohol &amp; Drugs <span class="arrow">▼</span></span>
+  <div class="dropdown">
+      <a href="/nyship-alcohol-rehab">NYSHIP Alcohol Rehab</a>
+      <a href="/nyship-drug-rehab">NYSHIP Drug Rehab</a>
       <a href="/nyship-heroin-rehab">Heroin Rehab</a>
-      <a href="/nyship-cocaine-rehab">Cocaine Rehab</a>
       <a href="/nyship-fentanyl-rehab">Fentanyl Rehab</a>
+      <a href="/nyship-cocaine-rehab">Cocaine Rehab</a>
       <a href="/nyship-meth-rehab">Meth Rehab</a>
       <a href="/rehab-that-accepts-nyship">Rehab That Accepts NYSHIP</a>
       <a href="/detox-that-accepts-nyship">Detox That Accepts NYSHIP</a>
       <a href="/nyship-substance-abuse-providers">NYSHIP Substance Abuse Providers</a>
-      <a href="/empire-plan-vs-hmo">Empire Plan vs HMO</a>
+      <a href="/nyship-rehab-orange-county">Orange County, NY</a>
+      <a href="/nyship-rehab-new-jersey">New Jersey (NYSHIP members)</a>
   </div>
 </li>
       <li>
@@ -641,7 +673,6 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
             <div class="dropdown-col-title">Hudson Valley &amp; North</div>
             <a href="/nyship-rehab-poughkeepsie">Poughkeepsie, NY</a>
             <a href="/nyship-rehab-newburgh">Newburgh, NY</a>
-            <a href="/nyship-rehab-orange-county">Orange County, NY</a>
             <a href="/nyship-rehab-kingston">Kingston, NY</a>
             <a href="/nyship-rehab-plattsburgh">Plattsburgh, NY</a>
           </div>
@@ -651,9 +682,9 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
   <a href="/nyship-rehab-long-island">Long Island</a>
   <a href="/nyship-rehab-yonkers">Yonkers</a>
   <a href="/nyship-rehab-white-plains">White Plains</a>
-  <a href="/nyship-rehab-new-jersey">New Jersey</a>
-  <a href="/nyship-rehab-morris-county-nj">Morris County, NJ</a>
   <a href="/nyship-rehab-albany">Albany</a>
+  <a href="/nyship-alcohol-rehab-long-island">Long Island Alcohol Rehab</a>
+  <a href="/nyship-drug-rehab-long-island">Long Island Drug Rehab</a>
 </div></div>
       </li>
       <li><a href="#" onclick="scrollSec('faq-section');return false;">FAQ</a></li>
@@ -697,7 +728,6 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
   <a href="/nyship-rehab-troy">Troy</a>
   <a href="/nyship-rehab-utica">Utica</a>
   <a href="/nyship-rehab-newburgh">Newburgh</a>
-  <a href="/nyship-rehab-orange-county">Orange County</a>
   <a href="/nyship-rehab-saratoga-springs">Saratoga Springs</a>
   <a href="/nyship-rehab-kingston">Kingston</a>
   <a href="/nyship-rehab-plattsburgh">Plattsburgh</a>
@@ -711,9 +741,9 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
 <a href="/nyship-rehab-long-island">Long Island</a>
 <a href="/nyship-rehab-yonkers">Yonkers</a>
 <a href="/nyship-rehab-white-plains">White Plains</a>
-  <a href="/nyship-rehab-new-jersey">New Jersey</a>
-  <a href="/nyship-rehab-morris-county-nj">Morris County, NJ</a>
 <a href="/nyship-rehab-albany">Albany</a>
+<a href="/nyship-alcohol-rehab-long-island">Long Island Alcohol Rehab</a>
+<a href="/nyship-drug-rehab-long-island">Long Island Drug Rehab</a>
 <div class="mob-section-title">Coverage</div>
 <a href="/nyship-rehab-coverage">Rehab Coverage</a>
 <a href="/nyship-detox-coverage">Detox Coverage</a>
@@ -721,16 +751,19 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
 <a href="/nyship-outpatient-treatment">Outpatient (PHP/IOP)</a>
 <a href="/nyship-coverage-verification">Coverage Verification</a>
 <a href="/nyship-mental-health-coverage">Mental Health Coverage</a>
-      <a href="/nyship-alcohol-rehab">Alcohol Rehab</a>
-      <a href="/nyship-drug-rehab">Drug Rehab</a>
-      <a href="/nyship-heroin-rehab">Heroin Rehab</a>
-      <a href="/nyship-cocaine-rehab">Cocaine Rehab</a>
-      <a href="/nyship-fentanyl-rehab">Fentanyl Rehab</a>
-      <a href="/nyship-meth-rehab">Meth Rehab</a>
-      <a href="/rehab-that-accepts-nyship">Rehab That Accepts NYSHIP</a>
-      <a href="/detox-that-accepts-nyship">Detox That Accepts NYSHIP</a>
-      <a href="/nyship-substance-abuse-providers">NYSHIP Substance Abuse Providers</a>
 <a href="/empire-plan-vs-hmo">Empire Plan vs HMO</a>
+<div class="mob-section-title">Alcohol &amp; Drug Rehab</div>
+<a href="/nyship-alcohol-rehab">NYSHIP Alcohol Rehab</a>
+<a href="/nyship-drug-rehab">NYSHIP Drug Rehab</a>
+<a href="/nyship-heroin-rehab">Heroin Rehab</a>
+<a href="/nyship-fentanyl-rehab">Fentanyl Rehab</a>
+<a href="/nyship-cocaine-rehab">Cocaine Rehab</a>
+<a href="/nyship-meth-rehab">Meth Rehab</a>
+<a href="/rehab-that-accepts-nyship">Rehab That Accepts NYSHIP</a>
+<a href="/detox-that-accepts-nyship">Detox That Accepts NYSHIP</a>
+<a href="/nyship-substance-abuse-providers">NYSHIP Substance Abuse Providers</a>
+<a href="/nyship-rehab-orange-county">Orange County, NY</a>
+<a href="/nyship-rehab-new-jersey">New Jersey (NYSHIP members)</a>
 <div class="mob-section-title">Blog</div>
 <a href="/blog/">Recovery Blog</a>
 <a href="tel:6318004691" class="mobile-cta">📞 631-800-4691</a>
@@ -850,8 +883,14 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
       <li><a href="/does-mvp-cover-rehab">MVP Health Care</a></li>
       <li><a href="/does-emblemhealth-cover-rehab">EmblemHealth</a></li>
       <li><a href="/does-excellus-cover-rehab">Excellus BCBS</a></li>
+      <li><a href="/does-ghi-cover-rehab">GHI / EmblemHealth</a></li>
+      <li><a href="/nyship-depression-coverage">Depression Coverage</a></li>
+      <li><a href="/nyship-adhd-coverage">ADHD Coverage</a></li>
     </ul></div>
     <div><h4>Locations</h4><ul>
+      <li><a href="/nyship-rehab-long-island">Long Island</a></li>
+      <li><a href="/nyship-rehab-new-york-city">New York City</a></li>
+      <li><a href="/nyship-rehab-orange-county">Orange County</a></li>
       <li><a href="/nyship-rehab-albany">Albany</a></li>
       <li><a href="/nyship-rehab-buffalo">Buffalo</a></li>
       <li><a href="/nyship-rehab-syracuse">Syracuse</a></li>
@@ -863,20 +902,21 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
   </div>
   <div class="footer-bottom">
     <span>© 2026 Addiction Rehab Center. All rights reserved. Licensed by NYS OASAS. Joint Commission Accredited.</span>
-    <span class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">HIPAA Notice</a></span>
+    <span class="footer-links"><a href="/editorial-policy">Editorial Policy</a><a href="/medical-director">Medical Director</a><a href="/references">References</a></span>
   </div>
-<div style="padding:1.4rem 5% 0;border-top:1px solid rgba(255,255,255,.12);margin-top:1rem"><h4 style="color:#fff;font-size:.92rem;margin-bottom:.6rem">Guides &amp; Recovery Blog</h4><div style="columns:4;-webkit-columns:4;column-gap:1.4rem"><a href="/empire-plan-substance-abuse-benefits" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Empire Plan Substance Abuse Benefits</a><a href="/nyship-prior-authorization-guide" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Prior Authorization Guide</a><a href="/how-much-does-rehab-cost-with-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How Much Does Rehab Cost?</a><a href="/nyship-copay-deductible-rehab" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Copays &amp; Deductibles</a><a href="/does-nyship-cover-out-of-network-rehab" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Out-of-Network Rehab</a><a href="/fmla-rehab-ny-state-employees" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">FMLA &amp; Rehab</a><a href="/will-rehab-affect-my-state-job" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Will Rehab Affect My Job?</a><a href="/medical-leave-for-rehab-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Taking Medical Leave</a><a href="/is-rehab-confidential-state-employee" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Is Rehab Confidential?</a><a href="/addiction-help-without-losing-job-ny" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Get Help Without Losing Your Job</a><a href="/what-to-expect-in-detox" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">What to Expect in Detox</a><a href="/how-to-choose-a-rehab-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How to Choose a Rehab</a><a href="/signs-you-need-addiction-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Signs You Need Treatment</a><a href="/family-guide-loved-one-addiction-ny" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Family Guide</a><a href="/levels-of-addiction-care" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Levels of Care</a><a href="/telehealth-addiction-treatment-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Telehealth Treatment</a><a href="/blog/does-nyship-cover-detox-explained" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Does NYSHIP Cover Detox? A Clear Explanati</a><a href="/blog/fentanyl-risks-new-york" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Fentanyl Risks in New York: What to Know</a><a href="/blog/alcohol-withdrawal-what-to-know" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Alcohol Withdrawal: What You Should Know</a><a href="/blog/the-opioid-epidemic-in-new-york" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">The Opioid Epidemic in New York</a><a href="/blog/how-medication-assisted-treatment-works" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How Medication-Assisted Treatment Works</a><a href="/blog/what-is-the-empire-plan-and-how-does-it-cover-addiction-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">What Is the Empire Plan &amp; How It Covers Re</a><a href="/blog/nyship-copays-and-deductibles-for-rehab-explained" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">NYSHIP Copays &amp; Deductibles for Rehab Expl</a><a href="/blog/how-prior-authorization-works-for-nyship-addiction-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How Prior Authorization Works for NYSHIP R</a><a href="/blog/inpatient-vs-outpatient-rehab-what-nyship-covers" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Inpatient vs Outpatient Rehab: What NYSHIP</a><a href="/blog/understanding-the-asam-levels-of-addiction-care" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Understanding the ASAM Levels of Addiction</a><a href="/blog/returning-to-work-after-rehab-as-a-new-york-state-employee" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Returning to Work After Rehab: NYS Employe</a><a href="/blog/is-rehab-confidential-for-new-york-state-employees" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Is Rehab Confidential for NY State Employe</a><a href="/blog/choosing-the-right-rehab-questions-every-nyship-member-should-ask" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Choosing Rehab: Key Questions for NYSHIP M</a><a href="/blog/aftercare-and-sober-living-after-rehab-in-new-york" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Aftercare &amp; Sober Living After Rehab in Ne</a><a href="/blog/telehealth-addiction-treatment-and-nyship-coverage" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Telehealth Addiction Treatment &amp; NYSHIP Co</a><a href="/blog/recognizing-the-signs-of-alcohol-use-disorder" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Recognizing the Signs of Alcohol Use Disor</a><a href="/blog/understanding-the-mental-health-parity-law-and-your-nyship-benefits" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Mental Health Parity Law &amp; Your NYSHIP Ben</a><a href="/blog/nyship-coverage-for-retirees-seeking-addiction-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">NYSHIP Coverage for Retirees Seeking Addic</a><a href="/blog/how-family-therapy-supports-long-term-recovery" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How Family Therapy Supports Long-Term Reco</a><a href="/blog/benzodiazepine-dependence-and-detox" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Benzodiazepine Dependence and Detox: A Gui</a><a href="/blog/cocaine-addiction-treatment-options" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Cocaine Addiction Treatment Options Explai</a><a href="/blog/dual-diagnosis-mental-health-and-addiction" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Dual Diagnosis: Mental Health and Addictio</a><a href="/blog/fmla-and-rehab-for-ny-state-employees" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">FMLA and Rehab for NY State Employees</a><a href="/blog/confidentiality-42-cfr-part-2-explained" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">42 CFR Part 2 Confidentiality Explained</a><a href="/blog/how-to-verify-your-nyship-benefits" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How to Verify Your NYSHIP Benefits for Reh</a><a href="/blog/how-to-help-a-loved-one-get-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How to Help a Loved One Get Addiction Trea</a><a href="/blog/what-to-expect-in-medical-detox" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">What to Expect in Medical Detox</a><a href="/blog/relapse-prevention-strategies" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Relapse Prevention Strategies That Work</a><a href="/blog/telehealth-addiction-treatment-explained" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Telehealth Addiction Treatment Explained</a><a href="/blog/prescription-opioid-dependence-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Prescription Opioid Dependence: A NYSHIP M</a><a href="/blog/returning-to-work-after-rehab-ny-state" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Returning to Work After Rehab: NY State Em</a><a href="/blog/ny-good-samaritan-law-naloxone" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">New York's Good Samaritan Law and Naloxone</a><a href="/blog/stimulant-addiction-detox-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Stimulant Addiction: A NYSHIP Member's Gui</a><a href="/blog/post-acute-withdrawal-syndrome-paws-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Post-Acute Withdrawal Syndrome (PAWS) Expl</a><a href="/blog/heroin-addiction-treatment-new-york-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Heroin Addiction Treatment in New York and</a><a href="/blog/" style="display:block;color:#cca967;font-size:.8rem;padding:.15rem 0;font-weight:700;break-inside:avoid">All Posts →</a></div></div><div style="text-align:center;padding:1.1rem 5%;border-top:1px solid rgba(255,255,255,.12)"><a href="/blog/" style="color:rgba(255,255,255,.6);font-size:.82rem;letter-spacing:.3px;margin-right:1.2rem">Blog</a><a href="/site-map" style="color:rgba(255,255,255,.6);font-size:.82rem;letter-spacing:.3px">Site Map · Browse All Pages</a></div></footer>
+<div style="padding:1.4rem 5% 0;border-top:1px solid rgba(255,255,255,.12);margin-top:1rem"><h4 style="color:#fff;font-size:.92rem;margin-bottom:.6rem">Guides &amp; Recovery Blog</h4><div style="columns:4;-webkit-columns:4;column-gap:1.4rem"><a href="/empire-plan-substance-abuse-benefits" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Empire Plan Substance Abuse Benefits</a><a href="/nyship-prior-authorization-guide" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Prior Authorization Guide</a><a href="/how-much-does-rehab-cost-with-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How Much Does Rehab Cost?</a><a href="/nyship-copay-deductible-rehab" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Copays &amp; Deductibles</a><a href="/does-nyship-cover-out-of-network-rehab" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Out-of-Network Rehab</a><a href="/fmla-rehab-ny-state-employees" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">FMLA &amp; Rehab</a><a href="/will-rehab-affect-my-state-job" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Will Rehab Affect My Job?</a><a href="/medical-leave-for-rehab-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Taking Medical Leave</a><a href="/is-rehab-confidential-state-employee" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Is Rehab Confidential?</a><a href="/addiction-help-without-losing-job-ny" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Get Help Without Losing Your Job</a><a href="/what-to-expect-in-detox" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">What to Expect in Detox</a><a href="/how-to-choose-a-rehab-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How to Choose a Rehab</a><a href="/signs-you-need-addiction-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Signs You Need Treatment</a><a href="/family-guide-loved-one-addiction-ny" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Family Guide</a><a href="/levels-of-addiction-care" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Levels of Care</a><a href="/telehealth-addiction-treatment-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Telehealth Treatment</a><a href="/blog/does-nyship-cover-detox-explained" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Does NYSHIP Cover Detox? A Clear Explanati</a><a href="/blog/fentanyl-risks-new-york" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Fentanyl Risks in New York: What to Know</a><a href="/blog/alcohol-withdrawal-what-to-know" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Alcohol Withdrawal: What You Should Know</a><a href="/blog/the-opioid-epidemic-in-new-york" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">The Opioid Epidemic in New York</a><a href="/blog/how-medication-assisted-treatment-works" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How Medication-Assisted Treatment Works</a><a href="/blog/what-is-the-empire-plan-and-how-does-it-cover-addiction-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">What Is the Empire Plan? NYSHIP Rehab Cove</a><a href="/blog/nyship-copays-and-deductibles-for-rehab-explained" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">NYSHIP Copays &amp; Deductibles for Rehab Expl</a><a href="/blog/how-prior-authorization-works-for-nyship-addiction-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How Prior Authorization Works for NYSHIP R</a><a href="/blog/inpatient-vs-outpatient-rehab-what-nyship-covers" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Inpatient vs Outpatient Rehab: What NYSHIP</a><a href="/blog/understanding-the-asam-levels-of-addiction-care" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Understanding the ASAM Levels of Addiction</a><a href="/blog/returning-to-work-after-rehab-as-a-new-york-state-employee" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Returning to Work After Rehab: NYS Employe</a><a href="/blog/is-rehab-confidential-for-new-york-state-employees" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Is Rehab Confidential for NY State Employe</a><a href="/blog/choosing-the-right-rehab-questions-every-nyship-member-should-ask" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Choosing Rehab: Key Questions for NYSHIP M</a><a href="/blog/aftercare-and-sober-living-after-rehab-in-new-york" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Aftercare &amp; Sober Living After Rehab in Ne</a><a href="/blog/telehealth-addiction-treatment-and-nyship-coverage" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Telehealth Addiction Treatment &amp; NYSHIP Co</a><a href="/blog/recognizing-the-signs-of-alcohol-use-disorder" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Recognizing the Signs of Alcohol Use Disor</a><a href="/blog/understanding-the-mental-health-parity-law-and-your-nyship-benefits" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Mental Health Parity Law &amp; Your NYSHIP Ben</a><a href="/blog/nyship-coverage-for-retirees-seeking-addiction-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">NYSHIP Coverage for Retirees Seeking Addic</a><a href="/blog/how-family-therapy-supports-long-term-recovery" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How Family Therapy Supports Long-Term Reco</a><a href="/blog/why-medical-supervision-matters-during-detox" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Why Medical Supervision Matters During Det</a><a href="/blog/what-to-expect-during-your-first-week-in-rehab" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">What to Expect During Your First Week in R</a><a href="/blog/supporting-a-coworker-who-is-struggling-with-addiction" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Supporting a Coworker Struggling With Addi</a><a href="/blog/how-to-prepare-financially-for-addiction-treatment-with-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How to Prepare Financially for Rehab With </a><a href="/blog/the-difference-between-detox-and-rehab" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Detox vs. Rehab: What's the Difference? | </a><a href="/blog/understanding-suboxone-and-vivitrol-for-opioid-recovery" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Suboxone vs. Vivitrol for Opioid Recovery:</a><a href="/blog/managing-anxiety-and-depression-in-early-recovery" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Managing Anxiety &amp; Depression in Early Rec</a><a href="/blog/how-nyship-hmo-plans-differ-from-the-empire-plan-for-rehab" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">NYSHIP HMO vs. Empire Plan for Rehab Cover</a><a href="/blog/warning-signs-of-prescription-painkiller-dependence" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Warning Signs of Prescription Painkiller D</a><a href="/blog/building-a-relapse-prevention-plan-that-lasts" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Building a Relapse Prevention Plan That La</a><a href="/blog/how-to-support-a-teen-or-young-adult-entering-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Supporting a Teen or Young Adult Entering </a><a href="/blog/what-happens-after-you-verify-your-nyship-benefits" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">What Happens After You Verify NYSHIP Benef</a><a href="/blog/sober-living-homes-vs-halfway-houses-what-to-know" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Sober Living Homes vs Halfway Houses: What</a><a href="/blog/how-long-does-addiction-treatment-take" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How Long Does Addiction Treatment Take? A </a><a href="/blog/understanding-co-occurring-disorders-and-integrated-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Co-Occurring Disorders &amp; Integrated Treatm</a><a href="/blog/benzodiazepine-dependence-and-detox" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Benzodiazepine Dependence and Detox: A Gui</a><a href="/blog/cocaine-addiction-treatment-options" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Cocaine Addiction Treatment Options Explai</a><a href="/blog/dual-diagnosis-mental-health-and-addiction" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Dual Diagnosis: Mental Health and Addictio</a><a href="/blog/fmla-and-rehab-for-ny-state-employees" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">FMLA and Rehab for NY State Employees</a><a href="/blog/confidentiality-42-cfr-part-2-explained" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">42 CFR Part 2 Confidentiality Explained</a><a href="/blog/how-to-verify-your-nyship-benefits" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How to Verify Your NYSHIP Benefits for Reh</a><a href="/blog/how-to-help-a-loved-one-get-treatment" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">How to Help a Loved One Get Addiction Trea</a><a href="/blog/what-to-expect-in-medical-detox" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">What to Expect in Medical Detox</a><a href="/blog/relapse-prevention-strategies" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Relapse Prevention Strategies That Work</a><a href="/blog/telehealth-addiction-treatment-explained" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Telehealth Addiction Treatment Explained</a><a href="/blog/prescription-opioid-dependence-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Prescription Opioid Dependence: A NYSHIP M</a><a href="/blog/returning-to-work-after-rehab-ny-state" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Returning to Work After Rehab: NY State Em</a><a href="/blog/ny-good-samaritan-law-naloxone" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">New York's Good Samaritan Law and Naloxone</a><a href="/blog/stimulant-addiction-detox-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Stimulant Addiction: A NYSHIP Member's Gui</a><a href="/blog/post-acute-withdrawal-syndrome-paws-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Post-Acute Withdrawal Syndrome (PAWS) Expl</a><a href="/blog/cannabis-use-disorder-nyship-members" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Cannabis Use Disorder: What NYSHIP Members</a><a href="/blog/heroin-addiction-treatment-new-york-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Heroin Addiction Treatment in New York and</a><a href="/blog/employee-assistance-programs-eap-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Employee Assistance Programs and Addiction</a><a href="/blog/mindfulness-based-relapse-prevention-nyship" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Mindfulness-Based Relapse Prevention: A NY</a><a href="/blog/benzodiazepine-withdrawal-nyship-members" style="display:block;color:rgba(255,255,255,.6);font-size:.8rem;padding:.15rem 0;break-inside:avoid">Benzodiazepine Withdrawal: A Guide for NYS</a><a href="/blog/" style="display:block;color:#cca967;font-size:.8rem;padding:.15rem 0;font-weight:700;break-inside:avoid">All Posts →</a></div></div><div style="text-align:center;padding:1.1rem 5%;border-top:1px solid rgba(255,255,255,.12)"><a href="/blog/" style="color:rgba(255,255,255,.6);font-size:.82rem;letter-spacing:.3px;margin-right:1.2rem">Blog</a><a href="/site-map" style="color:rgba(255,255,255,.6);font-size:.82rem;letter-spacing:.3px">Site Map · Browse All Pages</a></div></footer>
 <style>
 #sl-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;display:flex;gap:8px;padding:8px 10px;background:#0a2540;box-shadow:0 -4px 22px rgba(0,0,0,.28)}
 #sl-sticky a{flex:1;text-align:center;color:#fff;padding:13px 6px;border-radius:9px;font-weight:800;text-decoration:none;font-size:15px;line-height:1.15;font-family:inherit}
 #sl-sticky .c{background:#1a9e5c}#sl-sticky .v{background:#d4a017}#sl-sticky .t{background:#2b7fd4}
 #sl-sticky a:hover{filter:brightness(1.07)}
 @media(max-width:899px){body{padding-bottom:74px}#sl-sticky{right:78px}}
-@media(min-width:900px){#sl-sticky{left:22px;right:auto;bottom:22px;max-width:520px;border-radius:15px;padding:9px}}
+@media(min-width:900px){#sl-sticky{left:22px;right:auto;bottom:22px;max-width:640px;border-radius:15px;padding:9px}#sl-sticky a{white-space:nowrap}}
+@media(max-width:899px){#sl-sticky a{font-size:14px;padding:12px 4px}}
 </style>
 <div id="sl-sticky" role="navigation" aria-label="Contact actions">
-  <a class="c" href="tel:6318004691" aria-label="Call now">📞 Call Now</a>
-  <a class="v" href="/nyship-coverage-verification" aria-label="Verify insurance">✅ Verify Insurance</a>
+  <a class="c" href="tel:6318004691" aria-label="Call 631-800-4691 now, free and confidential">📞 Call Now, Free</a>
+  <a class="v" href="/nyship-coverage-verification" aria-label="Check your NYSHIP or Empire Plan coverage">✅ Check Coverage</a>
   <a class="t" href="sms:6318004691" aria-label="Text us">💬 Text Us</a>
 </div>
 <script>

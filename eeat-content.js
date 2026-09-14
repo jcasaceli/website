@@ -33,7 +33,7 @@ module.exports = [
     slug: 'editorial-policy',
     navLabel: 'Editorial &amp; Review Policy',
     title: 'Editorial & Medical Review Policy | Addiction Rehab Center',
-    desc: 'How Addiction Rehab Center researches, writes, sources and reviews its NYSHIP and addiction-treatment content for accuracy. Our standards and update process.',
+    desc: 'How Addiction Rehab Center researches, writes, sources and reviews its NYSHIP and addiction-treatment content for accuracy, plus our update process.',
     html: `
 <section>
   <div class="container">
@@ -69,8 +69,8 @@ ${ctaBlock}`
     id: 'p-references',
     slug: 'references',
     navLabel: 'References &amp; Sources',
-    title: 'References & Sources | NYSHIP & Addiction Treatment Information',
-    desc: 'Authoritative sources behind our NYSHIP and addiction-treatment content — SAMHSA, NIDA, NIAAA, ASAM, the NYS Department of Civil Service and federal parity law.',
+    title: 'References & Sources | NYSHIP & Addiction Treatment Content',
+    desc: 'The sources behind our NYSHIP and addiction-treatment content: SAMHSA, NIDA, NIAAA, ASAM, the NYS Department of Civil Service and federal parity law.',
     html: `
 <section>
   <div class="container">
@@ -114,7 +114,7 @@ ${ctaBlock}`
     id: 'p-medical-director',
     slug: 'medical-director',
     navLabel: 'Medical Director',
-    title: 'Medical Director — Bradley Tourtlotte, MD | Addiction Rehab Center',
+    title: 'Medical Director Bradley Tourtlotte, MD | NYSHIP Rehab NY',
     desc: 'Meet our Medical Director, Bradley Tourtlotte, MD — a physician with 35+ years of experience providing medical oversight of detox and addiction treatment.',
     html: `
 <section>
@@ -143,7 +143,7 @@ ${ctaBlock}`
     slug: 'clinical-team',
     navLabel: 'Our Team',
     title: 'Our Clinical & Leadership Team | Addiction Rehab Center',
-    desc: 'Meet the leadership and clinical team behind our addiction treatment programs — experienced behavioral-health professionals committed to evidence-based, compassionate care.',
+    desc: 'Meet the leadership and clinical team behind Addiction Rehab Center, behavioral-health professionals committed to evidence-based, compassionate care.',
     html: `
 <section>
   <div class="container">
